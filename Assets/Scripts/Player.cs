@@ -11,8 +11,8 @@ public class Player : MonoBehaviour
     public bool isInteracting = true;
     public float viewDistance = 2f;
     [Header("Tool Manager")]
-    public IPart forwardPart;
-    public ITool hand;
+    public Part forwardPart;
+    public Tool hand;
 
     //private
     Rigidbody rb;
@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
     }
-    private void PickTool(ITool tool)
+    private void PickTool(Tool tool)
     {
         if (hand != null)
         {
@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
         hand = null;
     }
 
-    private void TargetPart(IPart part)
+    private void TargetPart(Part part)
     {
         forwardPart = part;
     }
@@ -56,7 +56,12 @@ public class Player : MonoBehaviour
             //se l'oggetto è tool
             if (target.GetComponent<Tool>())
             {
-                PickTool()
+                //pick del tool
+            }
+            if (target.GetComponent<Part>())
+            {
+                //se ho il tool, chiamo il doaction del tool con part
+                //se nn ho tool, faccio che lanciare logerror
             }
 
 
