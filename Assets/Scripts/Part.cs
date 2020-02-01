@@ -6,13 +6,16 @@ using UnityEngine;
 public class Part : MonoBehaviour
 {
     public Car car;
+    public float points;
     public List<Issue> issues = new List<Issue>();
 
     public Issue CurrentAction
     {
         get
         {
-            return issues[0];
+            if (issues.Count > 0)
+                return issues[0];
+            return null;
         }
     }
 

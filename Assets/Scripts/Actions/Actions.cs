@@ -23,6 +23,11 @@ public class Actions : MonoBehaviour
         ));
     }
 
+    public void RepairTyre(Transform target)
+    {
+
+    }
+
     private void DestroyGameObject(Transform target)
     {
         Destroy(target.gameObject);

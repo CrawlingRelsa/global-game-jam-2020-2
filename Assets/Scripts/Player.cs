@@ -118,7 +118,8 @@ public class Player : MonoBehaviour
                         Part selected = item.transform.GetComponent<Part>();
                         if (selected)
                         {
-                            if (hand.IsCompatible(selected)) forwardPart = selected;
+                          
+                            if (selected.issues.Count > 0 && hand.IsCompatible(selected)) forwardPart = selected;
                             return;
                         }
                     }

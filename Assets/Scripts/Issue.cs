@@ -6,18 +6,10 @@ using System;
 public class Issue
 {
     public Tool.ToolType compatibleTool;
-    public GameObject repairedObject;
-    [SerializeField]
-    public IssueEvent action;
 
     public void SolveIssue(Transform part)
     {
-        //Debug.Log("BOOM BABY");
-        //questa indica l'animazione
-        action.Invoke(part);
+        part.GetComponent<PartAction>().HandleAction();
     }
-
-    [Serializable]
-    public class IssueEvent : UnityEvent<Transform> { }
 }
 
