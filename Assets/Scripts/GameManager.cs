@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     #region PUBLIC VARIABLES
+    public float points = 0f;
     public Car[] availableCars;
     public List<Car> cars;
 
