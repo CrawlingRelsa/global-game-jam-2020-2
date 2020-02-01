@@ -44,9 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15d1480a41cb41743872df00fc16baac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  points: 100
   parts:
-  - {fileID: 883177193155819596}
-  - {fileID: 883177193744555310}
+  - {fileID: 0}
+  - {fileID: 0}
   carSpeed: 3
   carLength: 4.5
   raycastLength: 0.5
@@ -160,7 +161,7 @@ GameObject:
   - component: {fileID: 883177193155819593}
   - component: {fileID: 883177193155819598}
   - component: {fileID: 883177193155819599}
-  - component: {fileID: 883177193155819596}
+  - component: {fileID: 8132052411809873289}
   m_Layer: 10
   m_Name: PART1
   m_TagString: Untagged
@@ -242,7 +243,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &883177193155819596
+--- !u!114 &8132052411809873289
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -254,12 +255,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae0d471a97dc3304fbd3217fc1c9395b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  car: {fileID: 0}
   issues:
   - compatibleTool: 0
+    repairedObject: {fileID: 0}
     action:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_MethodName: 
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  points: 15
 --- !u!1 &883177193744555308
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,8 +284,8 @@ GameObject:
   - component: {fileID: 883177193744555311}
   - component: {fileID: 883177193744555307}
   - component: {fileID: 883177193744555304}
-  - component: {fileID: 883177193744555305}
-  - component: {fileID: 883177193744555310}
+  - component: {fileID: 8778882646517107724}
+  - component: {fileID: 6144634775114021054}
   m_Layer: 10
   m_Name: PART2
   m_TagString: Untagged
@@ -341,20 +354,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &883177193744555305
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 883177193744555308}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &883177193744555310
+--- !u!114 &8778882646517107724
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -366,9 +366,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae0d471a97dc3304fbd3217fc1c9395b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  car: {fileID: 0}
   issues:
-  - compatibleTool: 0
+  - compatibleTool: 1
+    repairedObject: {fileID: 0}
     action:
       m_PersistentCalls:
         m_Calls: []
+  points: 0
+--- !u!114 &6144634775114021054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883177193744555308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae0d471a97dc3304fbd3217fc1c9395b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  issues:
+  - compatibleTool: 1
+    repairedObject: {fileID: 0}
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11500000, guid: c400689021c45134aaa2961ef0297623, type: 3}
+          m_MethodName: 
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  points: 0

@@ -2,11 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.SceneManagement; 
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
     #region PUBLIC VARIABLES
+    public bool isGameRunning = false;
+
+    [Header("UI")]
+    public UIController uiController;
+
+    [Header("Cars")]
+    public float points = 0f;
     public Car[] availableCars;
     public List<Car> cars;
 
@@ -21,7 +30,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region PRIVATE VARIABLES
-    private bool isGameStarted = false;
+    
     #endregion
 
     #region UNITY INTERFACE
@@ -32,12 +41,12 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        Init();
+        startPoint.position = new Vector3(destinationPoint.position.x - (carBoxLength * carSlots), destinationPoint.position.y, destinationPoint.position.z);
     }
 
     void Update()
     {
-        if (!isGameStarted) return;
+        if (!isGameRunning) return;
 
         elapsedTime += Time.deltaTime;
         if (elapsedTime >= elapsedTimeSinceLastCarSpawn + carSpawnInterval)
@@ -45,15 +54,48 @@ public class GameManager : MonoBehaviour
             SpawnCar();
             elapsedTimeSinceLastCarSpawn = elapsedTime;
         }
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+            Pause();
     }
     #endregion
 
     #region PUBLIC INTERFACE
-    public void Init()
+    public void Play()
     {
-        startPoint.position = new Vector3(destinationPoint.position.x - (carBoxLength * carSlots), destinationPoint.position.y, destinationPoint.position.z);
-        isGameStarted = true;
+        Debug.Log("Play");
+
+        isGameRunning = true;
+
+        uiController.Play();
     }
+
+    public void Pause()
+    {
+        Debug.Log("Pause");
+
+        uiController.Pause();
+    }
+
+    public void Resume()
+    {
+        Debug.Log("Resume");
+
+        uiController.Resume();
+    }
+
+    public void Restart() 
+    {
+        Debug.Log("Restart");
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
     #endregion
 
     #region PRIVATE METHODS
@@ -62,6 +104,7 @@ public class GameManager : MonoBehaviour
         if (cars.Count >= carSlots)
         {
             //TODO Game Over
+            GameOver();
             return;
         }
 
@@ -71,6 +114,14 @@ public class GameManager : MonoBehaviour
         GameObject instance = GameObject.Instantiate(car.gameObject, startPoint.position, car.transform.rotation);
         instance.layer = LayerMask.NameToLayer("Car");
     }
+
+    private void GameOver()
+    {
+        isGameRunning = false;
+
+        uiController.GameOver();
+    }
+
     #endregion
 
 
