@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 667693021}
   - component: {fileID: 667693025}
   m_Layer: 10
-  m_Name: Cube
+  m_Name: PART
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -230,9 +230,66 @@ MonoBehaviour:
   car: {fileID: 0}
   issues:
   - compatibleTool: 0
+    repairedObject: {fileID: 0}
     action:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 790736166}
+          m_MethodName: Disappear
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!1 &790736165
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 790736167}
+  - component: {fileID: 790736166}
+  m_Layer: 0
+  m_Name: ActionManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &790736166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 790736165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de4f40228d01a0542b712ac7101cd154, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disappearDuration: 0.3
+  disappearEaseType: 5
+--- !u!4 &790736167
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 790736165}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.5147529, y: 0.45236552, z: 2.9466891}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &797934371
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,6 +422,7 @@ GameObject:
   m_Component:
   - component: {fileID: 820952464}
   - component: {fileID: 820952463}
+  - component: {fileID: 820952465}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -409,6 +467,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &820952465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820952462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de4f40228d01a0542b712ac7101cd154, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disappearDuration: 0.3
+  disappearEaseType: 5
 --- !u!1 &932586069
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,6 +784,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toolType: 0
+  isPermanent: 1
 --- !u!65 &2019568230
 BoxCollider:
   m_ObjectHideFlags: 0
