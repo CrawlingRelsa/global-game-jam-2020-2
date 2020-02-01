@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-using UnityEngine.SceneManagement; 
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,8 +11,9 @@ public class GameManager : MonoBehaviour
     #region PUBLIC VARIABLES
     public bool isGameRunning = false;
 
-    [Header("UI")]
+    [Header("Controllers")]
     public UIController uiController;
+    public DamagedCarConfigurator damagedCarConfigurator;
 
     [Header("Cars")]
     public float points = 0f;
@@ -30,7 +31,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region PRIVATE VARIABLES
-    
+
     #endregion
 
     #region UNITY INTERFACE
@@ -55,7 +56,7 @@ public class GameManager : MonoBehaviour
             elapsedTimeSinceLastCarSpawn = elapsedTime;
         }
 
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
             Pause();
     }
     #endregion
@@ -84,7 +85,7 @@ public class GameManager : MonoBehaviour
         uiController.Resume();
     }
 
-    public void Restart() 
+    public void Restart()
     {
         Debug.Log("Restart");
 
@@ -108,7 +109,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        Car car = availableCars[Random.Range(0, availableCars.Length)];
+        Car car = damagedCarConfigurator.GetRandomCar();
         cars.Add(car);
 
         GameObject instance = GameObject.Instantiate(car.gameObject, startPoint.position, car.transform.rotation);
