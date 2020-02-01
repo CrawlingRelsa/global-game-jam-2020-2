@@ -546,6 +546,7 @@ GameObject:
   - component: {fileID: 1472831886}
   - component: {fileID: 1472831885}
   - component: {fileID: 1472831889}
+  - component: {fileID: 1472831890}
   m_Layer: 9
   m_Name: Tool
   m_TagString: Untagged
@@ -641,6 +642,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toolType: 0
   isPermanent: 1
+--- !u!54 &1472831890
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1472831884}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &7304752656855068475
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -706,7 +723,7 @@ PrefabInstance:
     - target: {fileID: 7304752656015789232, guid: 5fd287f7ae467fc41b0ed19926bc666e,
         type: 3}
       propertyPath: viewDistance
-      value: 0.83
+      value: 1.79
       objectReference: {fileID: 0}
     - target: {fileID: 7304752656015789233, guid: 5fd287f7ae467fc41b0ed19926bc666e,
         type: 3}
