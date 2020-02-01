@@ -6,10 +6,13 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
+    [Header("CAMERA")]
+    public Animator camAnimator;
+
     [Header("UI")]
     public GameObject panelPause;
     public GameObject panelGame;
-    
+
     public GameObject playButton;
     public GameObject pauseButton;
     public GameObject restartButton;
@@ -18,7 +21,7 @@ public class UIController : MonoBehaviour
     public Text moneyLabel;
 
 
-    void Start() 
+    void Start()
     {
         panelPause.SetActive(true);
 
@@ -27,13 +30,16 @@ public class UIController : MonoBehaviour
         restartButton.SetActive(false);
     }
 
-    public void Play ()
+    public void Play()
     {
+        Debug.Log("PLAY");
         panelPause.SetActive(false);
         panelGame.SetActive(true);
+
+        camAnimator.SetBool("pause", false);
     }
 
-    public void Pause ()
+    public void Pause()
     {
         pauseButton.SetActive(true);
         playButton.SetActive(false);
@@ -41,12 +47,16 @@ public class UIController : MonoBehaviour
 
         panelPause.SetActive(true);
         panelGame.SetActive(false);
+
+        camAnimator.SetBool("pause", true);
     }
 
     public void Resume()
     {
         panelPause.SetActive(false);
         panelGame.SetActive(true);
+
+        camAnimator.SetBool("pause", false);
     }
 
     public void Restart()
@@ -58,7 +68,7 @@ public class UIController : MonoBehaviour
         moneyLabel.text = "0";
     }
 
-    public void GameOver ()
+    public void GameOver()
     {
         panelGame.SetActive(false);
         panelPause.SetActive(true);
