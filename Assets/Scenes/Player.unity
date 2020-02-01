@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 29931734}
   - component: {fileID: 29931733}
   - component: {fileID: 29931737}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Part
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
@@ -545,7 +545,7 @@ GameObject:
   - component: {fileID: 1472831886}
   - component: {fileID: 1472831885}
   - component: {fileID: 1472831889}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Tool
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
