@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public UIController uiController;
 
     [Header("Cars")]
+    public float points = 0f;
     public Car[] availableCars;
     public List<Car> cars;
 

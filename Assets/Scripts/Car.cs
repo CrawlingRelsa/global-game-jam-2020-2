@@ -5,6 +5,7 @@ using System.Linq;
 
 public class Car : MonoBehaviour
 {
+    public float points;
     public List<Part> parts;
     public float carSpeed;
     public float carLength;
@@ -19,12 +20,16 @@ public class Car : MonoBehaviour
     private void LoadParts()
     {
         parts = GetComponentsInChildren<Part>().ToList();
-        parts.Select(part => part.car = this).ToList();
     }
 
     public void Fix(Part part)
     {
+        GameManager.Instance.points += part.points;
         parts.Remove(part);
+        if (parts.Count == 0)
+        {
+            GameManager.Instance.points += this.points;
+        }
     }
 
     void Update()
