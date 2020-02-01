@@ -30,7 +30,7 @@ public class Car : MonoBehaviour
     void Update()
     {
         //Se la macchina non trova nulla davanti
-        Vector3 raycastOrigin = transform.position + Vector3.right * carLength / 2;
+        Vector3 raycastOrigin = transform.position + (Vector3.up) + Vector3.right * carLength / 2;
         if (!Physics.Raycast(raycastOrigin, transform.TransformDirection(Vector3.right), out hit, raycastLength, layerMask))
         {
             //Se non è arrivata a destinazione o se non è più da riparare
@@ -46,7 +46,7 @@ public class Car : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Vector3 raycastOrigin = transform.position + Vector3.right * carLength / 2;
+        Vector3 raycastOrigin = transform.position + (Vector3.up) + Vector3.right * carLength / 2;
         Gizmos.DrawLine(raycastOrigin, raycastOrigin + transform.TransformDirection(Vector3.right) * raycastLength);
     }
 }

@@ -17,11 +17,11 @@ public class Part : MonoBehaviour
 
     public void Repair()
     {
-        Actions.Apply(CurrentAction.actionType, transform);
-        issues.RemoveAt(0);
-        if (issues.Count == 0)
+        if (issues.Count > 0)
         {
-            car.Fix(this);
+            issues[0].SolveIssue(transform);
+            issues.RemoveAt(0);
         }
+
     }
 }

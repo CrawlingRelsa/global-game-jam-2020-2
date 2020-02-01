@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
         cars.Add(car);
 
         GameObject instance = GameObject.Instantiate(car.gameObject, startPoint.position, car.transform.rotation);
-        instance.layer = LayerMask.NameToLayer("car");
+        instance.layer = LayerMask.NameToLayer("Car");
     }
     #endregion
 

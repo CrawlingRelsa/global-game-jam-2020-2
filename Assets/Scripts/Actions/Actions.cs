@@ -1,30 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public static class Actions
+public class Actions : MonoBehaviour
 {
-    public static void Apply(Issue.ActionType actionType, Transform target)
-    {
-        switch (actionType)
-        {
-            case Issue.ActionType.Disappear:
-                Disappear(target);
-                break;
-            default:
-                return;
-        }
-    }
+    [Header("Disappear")]
+    public float disappearDuration = 0.3f;
+    public iTween.EaseType disappearEaseType = iTween.EaseType.easeInOutCubic;
 
 
-    public static float disappearDuration = 0.3f;
-    public static iTween.EaseType disappearEaseType = iTween.EaseType.easeInOutCubic;
-    private static void Disappear(Transform target)
+    #region Disappear
+    public void Disappear(Transform target)
     {
         iTween.ScaleTo(target.gameObject, iTween.Hash(
             "scale", Vector3.zero,
             "time", disappearDuration,
-            "easetype", disappearEaseType
+            "easetype", disappearEaseType,
+            "oncomplete", "DestroyGameObject",
+            "oncompletetarget", gameObject,
+            "oncompleteparams", target
         ));
     }
+
+    private void DestroyGameObject(Transform target)
+    {
+        Destroy(target.gameObject);
+    }
+    #endregion
 }
