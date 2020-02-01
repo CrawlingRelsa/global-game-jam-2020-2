@@ -99,9 +99,18 @@ public class Player : MonoBehaviour
             //se ho un tool in mano
             else
             {
-                if (Physics.Raycast(transform.position, transform.forward, out raycastHit, distanceRay, LayerMask.GetMask(new string[] { "Part" })))
+                RaycastHit[] hits = Physics.RaycastAll(transform.position, transform.forward, distanceRay, LayerMask.GetMask(new string[] { "Part" }));
+                if (hits.Length > 0)
                 {
-                    forwardPart = raycastHit.transform.GetComponent<Part>();
+                    foreach (var item in hits)
+                    {
+                        Part selected = item.transform.GetComponent<Part>();
+                        if (selected)
+                        {
+                            if (hand.IsCompatible(selected)) forwardPart = selected;
+                            return;
+                        }
+                    }
                 }
 
             }

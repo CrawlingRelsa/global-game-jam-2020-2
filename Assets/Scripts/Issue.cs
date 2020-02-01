@@ -12,7 +12,7 @@ public class Issue
 
     public void SolveIssue(Transform part)
     {
-        Debug.Log("BOOM BABY");
+        //Debug.Log("BOOM BABY");
         //questa indica l'animazione
         action.Invoke(part);
     }
