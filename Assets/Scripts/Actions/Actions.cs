@@ -16,8 +16,16 @@ public class Actions : MonoBehaviour
         iTween.ScaleTo(target.gameObject, iTween.Hash(
             "scale", Vector3.zero,
             "time", disappearDuration,
-            "easetype", disappearEaseType
+            "easetype", disappearEaseType,
+            "oncomplete", "DestroyGameObject",
+            "oncompletetarget", gameObject,
+            "oncompleteparams", target
         ));
+    }
+
+    private void DestroyGameObject(Transform target)
+    {
+        Destroy(target.gameObject);
     }
     #endregion
 }

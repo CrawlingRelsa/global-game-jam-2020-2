@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Part : MonoBehaviour
 {
+    public Car car;
     public List<Issue> issues = new List<Issue>();
 
-    public Issue CurrentAction {
-        get {
+    public Issue CurrentAction
+    {
+        get
+        {
             return issues[0];
         }
     }
