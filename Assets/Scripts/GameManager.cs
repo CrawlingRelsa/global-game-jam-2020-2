@@ -15,12 +15,13 @@ public class GameManager : MonoBehaviour
     public float carBoxLength = 5f;
     public Transform startPoint;
     public Transform destinationPoint;
-    #endregion
-
-    #region PRIVATE VARIABLES
     public float carSpawnInterval = 5f;
     public float elapsedTime = 0f;
     public float elapsedTimeSinceLastCarSpawn = 0f;
+    #endregion
+
+    #region PRIVATE VARIABLES
+    private bool isGameStarted = false;
     #endregion
 
     #region UNITY INTERFACE
@@ -36,6 +37,8 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if (!isGameStarted) return;
+
         elapsedTime += Time.deltaTime;
         if (elapsedTime >= elapsedTimeSinceLastCarSpawn + carSpawnInterval)
         {
@@ -49,6 +52,7 @@ public class GameManager : MonoBehaviour
     public void Init()
     {
         startPoint.position = new Vector3(destinationPoint.position.x - (carBoxLength * carSlots), destinationPoint.position.y, destinationPoint.position.z);
+        isGameStarted = true;
     }
     #endregion
 
