@@ -17,12 +17,21 @@ public class Player : MonoBehaviour
 
     //private
     Rigidbody rb;
+    private Vector3 forwardVector;
+    private Vector3 rightVector;
 
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        //
+        forwardVector = Camera.main.transform.forward;
+        forwardVector.y = 0;
+        forwardVector.Normalize();
+        rightVector = Camera.main.transform.right;
+        rightVector.y = 0;
+        rightVector.Normalize();
     }
     private void PickTool(Tool tool)
     {
@@ -93,23 +102,18 @@ public class Player : MonoBehaviour
             //se non ho il tool in mano
             if (hand == null)
             {
-                Debug.Log("no hand");
                 if (Physics.Raycast(transform.position, transform.forward, out raycastHit, distanceRay, LayerMask.GetMask(new string[] { "Tool" })))
                     forwardTool = raycastHit.transform.GetComponent<Tool>();
             }
             //se ho un tool in mano
             else
             {
-                Debug.Log("hand");
                 if (Physics.Raycast(transform.position, transform.forward, out raycastHit, distanceRay, LayerMask.GetMask(new string[] { "Part" })))
                 {
                     forwardPart = raycastHit.transform.GetComponent<Part>();
-                    Debug.Log("HIT");
                 }
 
             }
-
-            Debug.Log(raycastHit.transform?.name);
             //mi aspetto che non sia entrambe nello stesso oggetto se no problemi di level design
 
         }
@@ -121,6 +125,7 @@ public class Player : MonoBehaviour
         if (canMove)
         {
             Vector3 dir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+            dir = forwardVector * Input.GetAxisRaw("Vertical") + rightVector * Input.GetAxisRaw("Horizontal");
             //look at forward
             transform.LookAt(transform.position + dir);
             if (dir.magnitude == 0) rb.velocity = Vector3.zero;
