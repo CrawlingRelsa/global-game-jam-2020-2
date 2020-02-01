@@ -29,6 +29,8 @@ public class Player : MonoBehaviour
         if (hand == null)
         {
             hand = tool;
+            hand.transform.LookAt(transform.position + (transform.forward * 10f));
+            hand.transform.SetParent(this.transform);
             //TODO: animazione e spostamento dell'oggetto come figlio
         }
         else
@@ -39,8 +41,10 @@ public class Player : MonoBehaviour
     }
     private void ReleaseTool()
     {
-        hand = null;
         //TODO: animazione e appoggio la roba
+        hand.transform.SetParent(null);
+        hand = null;
+
     }
 
     private void UseTool()
@@ -65,8 +69,11 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        //reset forward 
         forwardTool = null;
         forwardPart = null;
+        float distanceRay = viewDistance + (hand ? hand.GetComponent<Collider>().bounds.extents.z * 2 : 0);
+        //track dell'oggetto davanti
         Ray ray = new Ray(transform.position, transform.forward);
         //sono davanti ad un tool o ad una parte
         if (isInteracting && Physics.Raycast(transform.position, transform.forward, out RaycastHit raycastHit, viewDistance, LayerMask.GetMask(new string[] { "Part", "Tool" })))
@@ -117,6 +124,7 @@ public class Player : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + (transform.forward * viewDistance));
+        float distanceRay = viewDistance + (hand ? hand.GetComponent<Collider>().bounds.extents.z * 2 : 0);
+        Gizmos.DrawLine(transform.position, transform.position + (transform.forward * distanceRay));
     }
 }
