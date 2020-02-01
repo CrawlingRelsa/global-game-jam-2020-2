@@ -84,14 +84,14 @@ public class Player : MonoBehaviour
             //se non ho il tool in mano
             if (hand == null)
             {
-                Debug.Log("no hand");
+                // Debug.Log("no hand");
                 if (Physics.Raycast(transform.position, transform.forward, out raycastHit, distanceRay, LayerMask.GetMask(new string[] { "Tool" })))
                     forwardTool = raycastHit.transform.GetComponent<Tool>();
             }
             //se ho un tool in mano
             else
             {
-                Debug.Log("hand");
+                // Debug.Log("hand");
                 if (Physics.Raycast(transform.position, transform.forward, out raycastHit, distanceRay, LayerMask.GetMask(new string[] { "Part" })))
                 {
                     forwardPart = raycastHit.transform.GetComponent<Part>();
@@ -100,7 +100,7 @@ public class Player : MonoBehaviour
 
             }
 
-            Debug.Log(raycastHit.transform?.name);
+            // Debug.Log(raycastHit.transform?.name);
             //mi aspetto che non sia entrambe nello stesso oggetto se no problemi di level design
 
         }
