@@ -5,7 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class Issue
 {
-    public string statusName;
     public Tool.ToolType compatibleTool;
 
     public enum ActionType { Disappear }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Part : MonoBehaviour
 {
+    public Car car;
     public List<Issue> issues = new List<Issue>();
 
     public Issue CurrentAction
@@ -18,5 +19,9 @@ public class Part : MonoBehaviour
     {
         Actions.Apply(CurrentAction.actionType, transform);
         issues.RemoveAt(0);
+        if (issues.Count == 0)
+        {
+            car.Fix(this);
+        }
     }
 }
