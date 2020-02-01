@@ -6,17 +6,19 @@ public class Part : MonoBehaviour
 {
     public List<Issue> issues = new List<Issue>();
 
-    public Issue CurrentAction
-    {
-        get
-        {
+    public Issue CurrentAction {
+        get {
             return issues[0];
         }
     }
 
     public void Repair()
     {
-        Actions.Apply(CurrentAction.actionType, transform);
-        issues.RemoveAt(0);
+        if (issues.Count > 0)
+        {
+            issues[0].SolveIssue(transform);
+            issues.RemoveAt(0);
+        }
+
     }
 }

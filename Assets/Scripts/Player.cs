@@ -64,7 +64,9 @@ public class Player : MonoBehaviour
             return;
         }
         //uso il tool sulla parte
-        hand.DoAction(forwardPart);
+        if (hand.IsCompatible(forwardPart))
+            hand.DoAction(forwardPart);
+        else Debug.LogError("Il tool non è compatibile");
     }
 
     private void Update()
