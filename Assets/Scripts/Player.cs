@@ -78,16 +78,31 @@ public class Player : MonoBehaviour
         //track dell'oggetto davanti
         Ray ray = new Ray(transform.position, transform.forward);
         //sono davanti ad un tool o ad una parte
-        if (isInteracting && Physics.Raycast(transform.position, transform.forward, out RaycastHit raycastHit, viewDistance, LayerMask.GetMask(new string[] { "Part", "Tool" })))
+        if (isInteracting)
         {
-            Debug.Log(raycastHit.transform.name + " - " + raycastHit.transform.gameObject.layer.ToString());
-            //
-            GameObject target = raycastHit.transform.gameObject;
-            //se l'oggetto è tool
-            forwardTool = target.GetComponent<Tool>();
-            //se l'oggetto è una parte
-            forwardPart = target.GetComponent<Part>();
+            RaycastHit raycastHit;
+            //se non ho il tool in mano
+            if (hand == null)
+            {
+                Debug.Log("no hand");
+                if (Physics.Raycast(transform.position, transform.forward, out raycastHit, distanceRay, LayerMask.GetMask(new string[] { "Tool" })))
+                    forwardTool = raycastHit.transform.GetComponent<Tool>();
+            }
+            //se ho un tool in mano
+            else
+            {
+                Debug.Log("hand");
+                if (Physics.Raycast(transform.position, transform.forward, out raycastHit, distanceRay, LayerMask.GetMask(new string[] { "Part" })))
+                {
+                    forwardPart = raycastHit.transform.GetComponent<Part>();
+                    Debug.Log("HIT");
+                }
+
+            }
+
+            Debug.Log(raycastHit.transform?.name);
             //mi aspetto che non sia entrambe nello stesso oggetto se no problemi di level design
+
         }
     }
 
