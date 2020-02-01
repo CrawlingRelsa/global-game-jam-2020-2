@@ -49,18 +49,20 @@ public class Player : MonoBehaviour
             hand = tool;
             hand.transform.LookAt(transform.position + (transform.forward * 10f));
             hand.transform.SetParent(this.transform);
-            //TODO: animazione e spostamento dell'oggetto come figlio
+            hand.transform.GetComponent<Rigidbody>().isKinematic = true;
+            hand.transform.position = transform.position + (transform.forward * (GetComponent<Collider>().bounds.extents.z + 0.5f)) + transform.up;
         }
         else
         {
             Debug.LogError("Hai la mano piena!!!");
         }
-
     }
+
     private void ReleaseTool()
     {
         //TODO: animazione e appoggio la roba
         hand.transform.SetParent(null);
+        hand.transform.GetComponent<Rigidbody>().isKinematic = false;
         hand = null;
 
     }
@@ -116,7 +118,8 @@ public class Player : MonoBehaviour
                         Part selected = item.transform.GetComponent<Part>();
                         if (selected)
                         {
-                            if (hand.IsCompatible(selected)) forwardPart = selected;
+                          
+                            if (selected.issues.Count > 0 && hand.IsCompatible(selected)) forwardPart = selected;
                             return;
                         }
                     }
