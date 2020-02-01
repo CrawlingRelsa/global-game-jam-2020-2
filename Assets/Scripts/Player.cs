@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public float viewDistance = 2f;
     [Header("Tool Manager")]
     public Part forwardPart;
+    public Tool forwardTool;
     public Tool hand;
 
     //private
@@ -25,46 +26,59 @@ public class Player : MonoBehaviour
     }
     private void PickTool(Tool tool)
     {
-        if (hand != null)
+        if (hand == null)
         {
             hand = tool;
+            //TODO: animazione e spostamento dell'oggetto come figlio
         }
         else
         {
-            Debug.LogError("Ha la mano piena!!!");
+            Debug.LogError("Hai la mano piena!!!");
         }
 
     }
     private void ReleaseTool()
     {
         hand = null;
+        //TODO: animazione e appoggio la roba
     }
 
-    private void TargetPart(Part part)
+    private void UseTool()
     {
-        forwardPart = part;
+        //non ho niente in mano
+        if (hand == null)
+        {
+            Debug.LogError("non hai niente in mano");
+            return;
+        }
+        //non ho niente davanti
+        if (forwardPart == null)
+        {
+            Debug.LogError("non hai niente davanti quindi poso la roba");
+            //poggio il tool
+            ReleaseTool();
+            return;
+        }
+        //uso il tool sulla parte
+        hand.DoAction(forwardPart);
     }
 
     private void Update()
     {
+        forwardTool = null;
+        forwardPart = null;
         Ray ray = new Ray(transform.position, transform.forward);
-        //sono davanti ad un tool o ad un oggetto
-        if (isInteracting && Physics.Raycast(transform.position, transform.forward, out RaycastHit raycastHit, viewDistance, LayerMask.GetMask(new string[] { "Part", "Tools" })))
+        //sono davanti ad un tool o ad una parte
+        if (isInteracting && Physics.Raycast(transform.position, transform.forward, out RaycastHit raycastHit, viewDistance, LayerMask.GetMask(new string[] { "Part", "Tool" })))
         {
-            Debug.Log(raycastHit.transform.name);
+            Debug.Log(raycastHit.transform.name + " - " + raycastHit.transform.gameObject.layer.ToString());
+            //
             GameObject target = raycastHit.transform.gameObject;
             //se l'oggetto è tool
-            if (target.GetComponent<Tool>())
-            {
-                //pick del tool
-            }
-            if (target.GetComponent<Part>())
-            {
-                //se ho il tool, chiamo il doaction del tool con part
-                //se nn ho tool, faccio che lanciare logerror
-            }
-
-
+            forwardTool = target.GetComponent<Tool>();
+            //se l'oggetto è una parte
+            forwardPart = target.GetComponent<Part>();
+            //mi aspetto che non sia entrambe nello stesso oggetto se no problemi di level design
         }
     }
 
@@ -80,6 +94,25 @@ public class Player : MonoBehaviour
             else rb.velocity = transform.forward * speed;
         }
     }
+
+    private void LateUpdate()
+    {
+        //se premo il tasto azione
+        if (Input.GetButtonDown("Fire1"))
+        {
+            //non ho niente in mano e ho davanti un tool
+            if (!hand && forwardTool)
+            {
+                PickTool(forwardTool);
+            }
+            //ho in mano un tool
+            else
+            {
+                UseTool();
+            }
+        }
+    }
+
 
     private void OnDrawGizmos()
     {
