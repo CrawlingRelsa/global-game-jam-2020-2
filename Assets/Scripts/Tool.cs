@@ -7,6 +7,8 @@ public class Tool : MonoBehaviour
     public enum ToolType { Spray, Screwdriver, Wheel, Hammer, Glass, FireExtinguisher, Brench, LightBulb, Condom }
     public ToolType toolType;
 
+    public bool isStoreTool = false;
+
     public bool isPermanent = true;
 
     public bool IsCompatible(Part part) { return this.toolType == part.CurrentAction.compatibleTool; }

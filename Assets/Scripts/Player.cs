@@ -28,6 +28,15 @@ public class Player : MonoBehaviour
     {
         if (hand == null)
         {
+            if (tool.transform.parent)
+            {
+                Store store = tool.GetComponentInParent<Store>();
+                if (store)
+                {
+                    store.Create();
+                }
+            }
+
             hand = tool;
             hand.transform.LookAt(transform.position + (transform.forward * 10f));
             hand.transform.SetParent(this.transform);
