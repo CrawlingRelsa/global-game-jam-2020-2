@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 5089147174303027962}
   - component: {fileID: 1647670959233040331}
   - component: {fileID: 3740356305376574139}
-  m_Layer: 0
+  - component: {fileID: 280012422}
+  m_Layer: 10
   m_Name: Wheel2_part
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1882872934504546707}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -162,6 +163,23 @@ MonoBehaviour:
     type: 3}
   disappearDuration: 0.3
   disappearEaseType: 5
+--- !u!114 &280012422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882872934504546707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae0d471a97dc3304fbd3217fc1c9395b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  car: {fileID: 0}
+  points: 20
+  issues:
+  - compatibleTool: 1
+  - compatibleTool: 2
 --- !u!1001 &78399449330868217
 PrefabInstance:
   m_ObjectHideFlags: 0

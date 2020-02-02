@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     public float carRepairTime;
     public float elapsedTime = 0f;
     public float elapsedTimeSinceLastCarSpawn = 0f;
+    public float startPositionOffset = 20f;
     #endregion
 
     #region PRIVATE VARIABLES
@@ -42,9 +43,10 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
+
     void Start()
     {
-        startPoint.position = new Vector3(destinationPoint.position.x - (carBoxLength * carSlots), destinationPoint.position.y, destinationPoint.position.z);
+        startPoint.position = new Vector3(destinationPoint.position.x, destinationPoint.position.y, destinationPoint.position.z - (carBoxLength * carSlots) - startPositionOffset);
     }
 
     void Update()
@@ -115,12 +117,12 @@ public class GameManager : MonoBehaviour
         }
 
         Car car = damagedCarConfigurator.GetCar();
+        car.LoadParts();
         cars.Add(car);
 
         carRepairTime = car.GetRepairTime();
-
-        GameObject instance = GameObject.Instantiate(car.gameObject, startPoint.position, car.transform.rotation);
-        instance.layer = LayerMask.NameToLayer("Car");
+        car.transform.position = startPoint.position;
+        car.gameObject.layer = LayerMask.NameToLayer("Car");
     }
 
     private void GameOver()
