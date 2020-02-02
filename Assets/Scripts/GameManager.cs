@@ -19,7 +19,6 @@ public class GameManager : MonoBehaviour
     public int points = 0;
     public int repairedCars = 0;
     public float difficultyIncreasePerRepairCar = 0.5f;
-    public Car[] availableCars;
     public List<Car> cars;
 
     [Header("Car params")]

@@ -55,7 +55,7 @@ MonoBehaviour:
   parts: []
   carSpeed: 20
   carLength: 10
-  raycastLength: 5
+  raycastLength: 2
   layerMask:
     serializedVersion: 2
     m_Bits: 256
