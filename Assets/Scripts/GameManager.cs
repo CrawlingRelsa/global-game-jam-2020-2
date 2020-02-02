@@ -116,13 +116,6 @@ public class GameManager : MonoBehaviour
     #region PRIVATE METHODS
     private void SpawnCar()
     {
-        if (cars.Count >= carSlots)
-        {
-            //TODO Game Over
-            GameOver();
-            return;
-        }
-
         Car car = damagedCarConfigurator.GetCar();
         car.LoadParts();
         cars.Add(car);
@@ -130,6 +123,13 @@ public class GameManager : MonoBehaviour
         carRepairTime = car.GetRepairTime();
         car.transform.position = startPoint.position;
         car.gameObject.layer = LayerMask.NameToLayer("Car");
+
+        if (cars.Count > carSlots)
+        {
+            //TODO Game Over
+            GameOver();
+            return;
+        }
     }
 
     private void GameOver()

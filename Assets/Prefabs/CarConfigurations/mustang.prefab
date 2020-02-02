@@ -59,6 +59,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 256
+  bodyCar: {fileID: 5000309622559589760}
 --- !u!65 &9167762162329043844
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -191,7 +192,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: d0785495aa942b240a69e90bda5524f3, type: 3}
+  - {fileID: 2100000, guid: b1a896ddd752c6a47935044e0055a26a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -435,6 +436,12 @@ PrefabInstance:
 --- !u!4 &3900407573948289650 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8830231398690472009, guid: 3c2ca34734ba345faaa764845feba27e,
+    type: 3}
+  m_PrefabInstance: {fileID: 5524298991260144187}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &5000309622559589760 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 706761342299527099, guid: 3c2ca34734ba345faaa764845feba27e,
     type: 3}
   m_PrefabInstance: {fileID: 5524298991260144187}
   m_PrefabAsset: {fileID: 0}

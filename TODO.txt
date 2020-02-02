@@ -1,0 +1,7 @@
+Splashscreen
+Credits
+Joystick funzionante nei menù
+Auto sovrapposte
+Particellare aria per segnalare la ruota bucata
+Bug spawn quando si clicca nel menù
+Tool permanenti, quando escono dalla scena rispawnano sul bancone

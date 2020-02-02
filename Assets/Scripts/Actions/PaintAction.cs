@@ -36,9 +36,9 @@ public class PaintAction : PartAction
         StartCoroutine(FadeOut(paintSource, 1f));
         Vector3 oldScale = child.transform.localScale;
         Destroy(child);
-        child = Instantiate(carPainted, transform.position, transform.rotation, transform);
+        /* child = Instantiate(carPainted, transform.position, transform.rotation, transform);
         child.transform.localScale = oldScale;
-        child.GetComponent<Material>().color = startingColor;
+        child.GetComponent<Material>().color = startingColor; */
     }
 
     public static IEnumerator FadeOut(AudioSource audioSource, float FadeTime)

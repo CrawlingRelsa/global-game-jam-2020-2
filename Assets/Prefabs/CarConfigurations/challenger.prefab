@@ -115,7 +115,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2296430152505692781}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: -5.037, z: 1.448}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5966158322826865198}
@@ -209,7 +209,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: 9b63a18e1ad43eb41ad373193e2a3510, type: 3}
+  - {fileID: 2100000, guid: 2553813a9d8815042a88b08224ea12f2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -350,6 +350,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 256
+  bodyCar: {fileID: 2355669632818467184}
 --- !u!65 &1416692782
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -435,6 +436,12 @@ PrefabInstance:
 --- !u!4 &6049642799188297346 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 810609887382756910, guid: b1c5c915c658648229a2b24a31bcd18a,
+    type: 3}
+  m_PrefabInstance: {fileID: 6398343447098431660}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &2355669632818467184 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8681390301728852444, guid: b1c5c915c658648229a2b24a31bcd18a,
     type: 3}
   m_PrefabInstance: {fileID: 6398343447098431660}
   m_PrefabAsset: {fileID: 0}

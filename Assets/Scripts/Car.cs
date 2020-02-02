@@ -11,10 +11,20 @@ public class Car : MonoBehaviour
     public float carLength;
     public float raycastLength;
     public LayerMask layerMask;
+    public Renderer bodyCar;
 
 
     private RaycastHit hit;
     private Ray ray;
+
+    void Start()
+    {
+        bodyCar.material.color = new Color(
+            Random.Range(.1f, .9f),
+            Random.Range(.1f, .9f),
+            Random.Range(.1f, .9f)
+        );
+    }
 
     [ContextMenu("LoadParts")]
     public void LoadParts()
@@ -37,6 +47,7 @@ public class Car : MonoBehaviour
         parts.Remove(part);
         if (parts.Count == 0)
         {
+            GameManager.Instance.cars.Remove(this);
             GameManager.Instance.points += points;
             GameManager.Instance.repairedCars += 1;
         }

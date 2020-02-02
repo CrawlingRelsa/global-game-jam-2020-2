@@ -32,7 +32,6 @@ public class UIController : MonoBehaviour
 
     public void Play()
     {
-        Debug.Log("PLAY");
         panelPause.SetActive(false);
         panelGame.SetActive(true);
 

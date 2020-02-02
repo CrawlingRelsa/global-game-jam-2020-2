@@ -48,9 +48,13 @@ public class DamagedCarConfigurator : MonoBehaviour
         for (int i = 0; i < randomCar.partsConfigurations.Length; i++)
         {
             PartConfiguration partConfiguration = randomCar.partsConfigurations[i];
+
+
             GameObject prefab;
             if (selectedIssues < issuesNumber)
             {
+                if (partConfiguration.repaired.Length == 0) continue;
+
                 prefab = partConfiguration.damaged[partConfiguration.damaged.Length > 1 ? randomWheeIndex : 0];
             }
             else
