@@ -16,8 +16,9 @@ public class GameManager : MonoBehaviour
     public DamagedCarConfigurator damagedCarConfigurator;
 
     [Header("Cars")]
-    public float points = 0f;
+    public int points = 0;
     public int repairedCars = 0;
+    public float difficultyIncreasePerRepairCar = 0.5f;
     public Car[] availableCars;
     public List<Car> cars;
 
@@ -26,7 +27,7 @@ public class GameManager : MonoBehaviour
     public float carBoxLength = 5f;
     public Transform startPoint;
     public Transform destinationPoint;
-    public float carSpawnInterval = 5f;
+    public float carRepairTime;
     public float elapsedTime = 0f;
     public float elapsedTimeSinceLastCarSpawn = 0f;
     #endregion
@@ -51,7 +52,8 @@ public class GameManager : MonoBehaviour
         if (!isGameRunning) return;
 
         elapsedTime += Time.deltaTime;
-        if (elapsedTime >= elapsedTimeSinceLastCarSpawn + carSpawnInterval)
+
+        if (elapsedTime >= elapsedTimeSinceLastCarSpawn + carRepairTime)
         {
             SpawnCar();
             elapsedTimeSinceLastCarSpawn = elapsedTime;
@@ -70,6 +72,8 @@ public class GameManager : MonoBehaviour
         isGameRunning = true;
 
         uiController.Play();
+
+        SpawnCar();
     }
 
     public void Pause()
@@ -112,6 +116,8 @@ public class GameManager : MonoBehaviour
 
         Car car = damagedCarConfigurator.GetCar();
         cars.Add(car);
+
+        carRepairTime = car.GetRepairTime();
 
         GameObject instance = GameObject.Instantiate(car.gameObject, startPoint.position, car.transform.rotation);
         instance.layer = LayerMask.NameToLayer("Car");

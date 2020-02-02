@@ -78,9 +78,9 @@ public class UIController : MonoBehaviour
         pauseButton.SetActive(false);
     }
 
-    public void UpdatePoints(int cars, int money)
+    public void UpdatePoints(int cars, int points)
     {
         carsLabel.text = cars.ToString();
-        moneyLabel.text = money.ToString();
+        moneyLabel.text = points.ToString();
     }
 }
