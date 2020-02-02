@@ -2466,6 +2466,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &792260184 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7304752656015789232, guid: 5fd287f7ae467fc41b0ed19926bc666e,
+    type: 3}
+  m_PrefabInstance: {fileID: 667305025}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e347fc2fb273fdd46a8150c10f94d4f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &795021571
 Transform:
   m_ObjectHideFlags: 0
@@ -2654,6 +2666,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c400689021c45134aaa2961ef0297623, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 792260184}
   isGameRunning: 0
   uiController: {fileID: 1304606163}
   damagedCarConfigurator: {fileID: 1782608355}
@@ -5281,22 +5294,22 @@ MonoBehaviour:
       repaired:
       - {fileID: 7630842656941192851, guid: 3c2ca34734ba345faaa764845feba27e, type: 3}
       damaged:
-      - {fileID: 5503340791012607081, guid: 4d1d3795964f14c89a2463e83e1720e9, type: 3}
+      - {fileID: 123049509775229430, guid: d65fe3c26e49c49a29421e7db8a4eb62, type: 3}
     - name: engine
       repaired:
       - {fileID: 5216602798725580620, guid: 55e754cf913274adb9ae3347b42c4a1a, type: 3}
       damaged:
-      - {fileID: 5216602798725580620, guid: def09f9da050d4bc0a5b7c7451b57f08, type: 3}
+      - {fileID: 5924773716023066501, guid: 91acac7473c7f47b592206b1481ac9d1, type: 3}
     - name: lights
       repaired:
-      - {fileID: 359095566065832891, guid: 999404dca6c3e40d28fb4463cd7ea8fd, type: 3}
+      - {fileID: 6193371108295063493, guid: 58248920c2b1e8441b9fef7e309ba3d7, type: 3}
       damaged:
-      - {fileID: 359095566065832891, guid: d249441e5572345a98852b2e7a8811ee, type: 3}
+      - {fileID: 3466798628904805727, guid: b7446fcd30e98d949b7484927da83a2b, type: 3}
     - name: windows
       repaired:
       - {fileID: 3091822692841865126, guid: d7041b017b7034d0dbfc03fc46ca1dbf, type: 3}
       damaged:
-      - {fileID: 3091822692841865126, guid: efb8aa953936c4f2087a97da9da83d9e, type: 3}
+      - {fileID: 447115946809932347, guid: 750763db860474e119f85828968d31f1, type: 3}
     - name: wheel_FR
       repaired:
       - {fileID: 3496806104336567069, guid: cec770249db394530aabe7b2dcbe235e, type: 3}
@@ -5306,12 +5319,12 @@ MonoBehaviour:
       - {fileID: 7788020776601524063, guid: 7ca853076146e4a41a3dbc546a8f281d, type: 3}
       - {fileID: 3067190491611582039, guid: e6ade93a6cfbe445fbdd157d825673f6, type: 3}
       damaged:
-      - {fileID: 5284239566048898078, guid: b29f3a06c43ba41cbaf27ab6b7a52d1a, type: 3}
-      - {fileID: 5575610219019326529, guid: 534341d01552e4fca97cd644e70616de, type: 3}
-      - {fileID: 5804317731600450370, guid: 5d0f3bb992d3740fb9434316b2cef100, type: 3}
-      - {fileID: 2019223998030979345, guid: dbb065bc565eb4922ad8de379db75d56, type: 3}
-      - {fileID: 3245062670305410045, guid: ea18c29c44fb44cdb858ce25ec2beb4c, type: 3}
-      - {fileID: 53573233870700234, guid: 31aaa4d7dec25490fa0dc77104802fb8, type: 3}
+      - {fileID: 3055769710232444755, guid: 728b60dd2c0e04d7fa96eba6584c5e87, type: 3}
+      - {fileID: 1882872934504546707, guid: 15b3220fe181f4aefb601aa96917d23a, type: 3}
+      - {fileID: 817105123199871863, guid: 2999c7bd183b6455391d53abdfcf0859, type: 3}
+      - {fileID: 5791392030485504587, guid: d3853c7b4f5324d58a149eb29f61eb18, type: 3}
+      - {fileID: 2366251020423237902, guid: ca345d117bfdd4d069ad22edce781685, type: 3}
+      - {fileID: 613887303638513374, guid: e2fc7d912408a4b31aaeb94b72d23762, type: 3}
     - name: wheel_RR
       repaired:
       - {fileID: 3496806104336567069, guid: cec770249db394530aabe7b2dcbe235e, type: 3}
@@ -5321,12 +5334,12 @@ MonoBehaviour:
       - {fileID: 7788020776601524063, guid: 7ca853076146e4a41a3dbc546a8f281d, type: 3}
       - {fileID: 3067190491611582039, guid: e6ade93a6cfbe445fbdd157d825673f6, type: 3}
       damaged:
-      - {fileID: 5284239566048898078, guid: b29f3a06c43ba41cbaf27ab6b7a52d1a, type: 3}
-      - {fileID: 5575610219019326529, guid: 534341d01552e4fca97cd644e70616de, type: 3}
-      - {fileID: 5804317731600450370, guid: 5d0f3bb992d3740fb9434316b2cef100, type: 3}
-      - {fileID: 2019223998030979345, guid: dbb065bc565eb4922ad8de379db75d56, type: 3}
-      - {fileID: 3245062670305410045, guid: ea18c29c44fb44cdb858ce25ec2beb4c, type: 3}
-      - {fileID: 53573233870700234, guid: 31aaa4d7dec25490fa0dc77104802fb8, type: 3}
+      - {fileID: 3055769710232444755, guid: 728b60dd2c0e04d7fa96eba6584c5e87, type: 3}
+      - {fileID: 1882872934504546707, guid: 15b3220fe181f4aefb601aa96917d23a, type: 3}
+      - {fileID: 817105123199871863, guid: 2999c7bd183b6455391d53abdfcf0859, type: 3}
+      - {fileID: 5791392030485504587, guid: d3853c7b4f5324d58a149eb29f61eb18, type: 3}
+      - {fileID: 2366251020423237902, guid: ca345d117bfdd4d069ad22edce781685, type: 3}
+      - {fileID: 613887303638513374, guid: e2fc7d912408a4b31aaeb94b72d23762, type: 3}
   - name: challenger
     carRoot: {fileID: 7248355285771950141, guid: 710c3e1808e444ae8832989acbac7ea8,
       type: 3}
@@ -5335,22 +5348,22 @@ MonoBehaviour:
       repaired:
       - {fileID: 1752647092151298292, guid: b1c5c915c658648229a2b24a31bcd18a, type: 3}
       damaged:
-      - {fileID: 8911164885488404751, guid: 756bb852a49f642f5b416dd4f4c10209, type: 3}
+      - {fileID: 6489114044881816488, guid: 601bdff3df4173343ac9af473aefa4d4, type: 3}
     - name: engine
       repaired:
       - {fileID: 2888415965768015204, guid: 41f5b0e064d4447959479cf743ba7e78, type: 3}
       damaged:
-      - {fileID: 8946661243827636017, guid: 05a18994bfe5f49da8d97d745ac305c3, type: 3}
+      - {fileID: 4111447172123468812, guid: 563b9383fb2c5334ea3f329392ccabbb, type: 3}
     - name: lights
       repaired:
       - {fileID: 4235192509652807743, guid: bfba99ce7c21342daa6f4ea0a33d2655, type: 3}
       damaged:
-      - {fileID: 2128791342831549556, guid: 7d9b0f00239af4260b9bc05c8ef322f2, type: 3}
+      - {fileID: 4111447172123468812, guid: 03fe3cf33ac4a1b46b10f767ed901ee6, type: 3}
     - name: windows
       repaired:
       - {fileID: 2459250995909911749, guid: cab8dc883962e4601b31a837893a1a6e, type: 3}
       damaged:
-      - {fileID: 9182536016982587527, guid: 0ad9e5af271c444f3bc5b3f3b11d564a, type: 3}
+      - {fileID: 2233864897146763346, guid: 10883006c27ed4e97a275dc669111b4f, type: 3}
     - name: wheel_FR
       repaired:
       - {fileID: 3496806104336567069, guid: cec770249db394530aabe7b2dcbe235e, type: 3}
@@ -5360,12 +5373,12 @@ MonoBehaviour:
       - {fileID: 7788020776601524063, guid: 7ca853076146e4a41a3dbc546a8f281d, type: 3}
       - {fileID: 3067190491611582039, guid: e6ade93a6cfbe445fbdd157d825673f6, type: 3}
       damaged:
-      - {fileID: 5284239566048898078, guid: b29f3a06c43ba41cbaf27ab6b7a52d1a, type: 3}
-      - {fileID: 5575610219019326529, guid: 534341d01552e4fca97cd644e70616de, type: 3}
-      - {fileID: 5804317731600450370, guid: 5d0f3bb992d3740fb9434316b2cef100, type: 3}
-      - {fileID: 2019223998030979345, guid: dbb065bc565eb4922ad8de379db75d56, type: 3}
-      - {fileID: 3245062670305410045, guid: ea18c29c44fb44cdb858ce25ec2beb4c, type: 3}
-      - {fileID: 53573233870700234, guid: 31aaa4d7dec25490fa0dc77104802fb8, type: 3}
+      - {fileID: 3055769710232444755, guid: 728b60dd2c0e04d7fa96eba6584c5e87, type: 3}
+      - {fileID: 1882872934504546707, guid: 15b3220fe181f4aefb601aa96917d23a, type: 3}
+      - {fileID: 817105123199871863, guid: 2999c7bd183b6455391d53abdfcf0859, type: 3}
+      - {fileID: 5791392030485504587, guid: d3853c7b4f5324d58a149eb29f61eb18, type: 3}
+      - {fileID: 2366251020423237902, guid: ca345d117bfdd4d069ad22edce781685, type: 3}
+      - {fileID: 613887303638513374, guid: e2fc7d912408a4b31aaeb94b72d23762, type: 3}
     - name: wheel_RR
       repaired:
       - {fileID: 3496806104336567069, guid: cec770249db394530aabe7b2dcbe235e, type: 3}
@@ -5375,12 +5388,12 @@ MonoBehaviour:
       - {fileID: 7788020776601524063, guid: 7ca853076146e4a41a3dbc546a8f281d, type: 3}
       - {fileID: 3067190491611582039, guid: e6ade93a6cfbe445fbdd157d825673f6, type: 3}
       damaged:
-      - {fileID: 5284239566048898078, guid: b29f3a06c43ba41cbaf27ab6b7a52d1a, type: 3}
-      - {fileID: 5575610219019326529, guid: 534341d01552e4fca97cd644e70616de, type: 3}
-      - {fileID: 5804317731600450370, guid: 5d0f3bb992d3740fb9434316b2cef100, type: 3}
-      - {fileID: 2019223998030979345, guid: dbb065bc565eb4922ad8de379db75d56, type: 3}
-      - {fileID: 3245062670305410045, guid: ea18c29c44fb44cdb858ce25ec2beb4c, type: 3}
-      - {fileID: 53573233870700234, guid: 31aaa4d7dec25490fa0dc77104802fb8, type: 3}
+      - {fileID: 3055769710232444755, guid: 728b60dd2c0e04d7fa96eba6584c5e87, type: 3}
+      - {fileID: 1882872934504546707, guid: 15b3220fe181f4aefb601aa96917d23a, type: 3}
+      - {fileID: 817105123199871863, guid: 2999c7bd183b6455391d53abdfcf0859, type: 3}
+      - {fileID: 5791392030485504587, guid: d3853c7b4f5324d58a149eb29f61eb18, type: 3}
+      - {fileID: 2366251020423237902, guid: ca345d117bfdd4d069ad22edce781685, type: 3}
+      - {fileID: 613887303638513374, guid: e2fc7d912408a4b31aaeb94b72d23762, type: 3}
 --- !u!4 &1782608356
 Transform:
   m_ObjectHideFlags: 0

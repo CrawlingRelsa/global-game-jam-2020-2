@@ -64,8 +64,12 @@ MonoBehaviour:
   car: {fileID: 0}
   points: 30
   issues:
-  - compatibleTool: 5
-  - compatibleTool: 6
+  - minimumRepairTime: 10
+    maximumRepairTime: 15
+    compatibleTool: 5
+  - minimumRepairTime: 10
+    maximumRepairTime: 15
+    compatibleTool: 6
 --- !u!82 &4653267592203421003
 AudioSource:
   m_ObjectHideFlags: 0

@@ -132,7 +132,9 @@ MonoBehaviour:
   car: {fileID: 0}
   points: 10
   issues:
-  - compatibleTool: 7
+  - minimumRepairTime: 10
+    maximumRepairTime: 15
+    compatibleTool: 7
 --- !u!65 &142311368353969310
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -255,7 +257,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentStatus: 0
-  lampClip: {fileID: 0}
 --- !u!95 &3050257232347697964
 Animator:
   serializedVersion: 3

@@ -53,7 +53,9 @@ MonoBehaviour:
   car: {fileID: 0}
   points: 10
   issues:
-  - compatibleTool: 7
+  - minimumRepairTime: 10
+    maximumRepairTime: 15
+    compatibleTool: 7
 --- !u!65 &642843733521757645
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     #region PUBLIC VARIABLES
+    public Player player;
     public bool isGameRunning = false;
 
     [Header("Controllers")]
@@ -50,6 +51,9 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        // FIXME
+        player.canMove = isGameRunning;
+
         if (!isGameRunning) return;
 
         elapsedTime += Time.deltaTime;
@@ -81,12 +85,16 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Pause");
 
+        isGameRunning = false;
+
         uiController.Pause();
     }
 
     public void Resume()
     {
         Debug.Log("Resume");
+
+        isGameRunning = true;
 
         uiController.Resume();
     }
