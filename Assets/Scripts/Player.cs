@@ -140,7 +140,6 @@ public class Player : MonoBehaviour
                         Part selected = item.transform.GetComponent<Part>();
                         if (selected)
                         {
-                            Debug.Log(hand.IsCompatible(selected));
                             if (selected.issues.Count > 0 && hand.IsCompatible(selected)) forwardPart = selected;
                             return;
                         }
