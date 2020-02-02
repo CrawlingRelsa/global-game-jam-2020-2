@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        startPoint.position = new Vector3(destinationPoint.position.x - (carBoxLength * carSlots), destinationPoint.position.y, destinationPoint.position.z);
+        startPoint.position = new Vector3(destinationPoint.position.x, destinationPoint.position.y, destinationPoint.position.z - (carBoxLength * carSlots));
     }
 
     void Update()
@@ -111,10 +111,11 @@ public class GameManager : MonoBehaviour
         }
 
         Car car = damagedCarConfigurator.GetCar();
+        car.LoadParts();
         cars.Add(car);
 
-        GameObject instance = GameObject.Instantiate(car.gameObject, startPoint.position, car.transform.rotation);
-        instance.layer = LayerMask.NameToLayer("Car");
+        car.transform.position = startPoint.position;
+        car.gameObject.layer = LayerMask.NameToLayer("Car");
     }
 
     private void GameOver()
