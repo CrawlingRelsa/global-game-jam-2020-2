@@ -29,6 +29,7 @@ public class Car : MonoBehaviour
         if (parts.Count == 0)
         {
             GameManager.Instance.points += this.points;
+            GameManager.Instance.repairedCars += 1;
         }
     }
 

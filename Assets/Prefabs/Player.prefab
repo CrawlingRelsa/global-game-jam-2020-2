@@ -65,10 +65,13 @@ MonoBehaviour:
   speed: 2
   canMove: 1
   isInteracting: 1
-  viewDistance: 0.83
+  viewDistance: 1.79
+  extents: {x: 0.5, y: 1.76, z: 1}
+  center: {x: 0, y: 0.61, z: 1.88}
   forwardPart: {fileID: 0}
   forwardTool: {fileID: 0}
   hand: {fileID: 0}
+  rays: 4
 --- !u!65 &233245619
 BoxCollider:
   m_ObjectHideFlags: 0
