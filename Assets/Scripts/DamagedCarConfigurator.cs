@@ -22,70 +22,62 @@ public class CarConfiguration
 }
 public class DamagedCarConfigurator : MonoBehaviour
 {
-
     public CarConfiguration[] carConfiguration;
 
-    private CarConfiguration randomizedCar;
-    private GameObject carRoot;
-    private GameObject prefab;
-    private PartConfiguration partConfiguration;
-    private List<PartConfiguration> copyCarParts;
-    private int isDamaged;
-    private GameObject instance;
-    private Transform parent;
-
-    public Car GetRandomCar(int difficulty)
+    public void Shuffle(PartConfiguration[] partsConfigurations)
     {
-        randomizedCar = carConfiguration[Random.Range(0, carConfiguration.Length)];
-        carRoot = GameObject.Instantiate(randomizedCar.carRoot, Vector3.zero, randomizedCar.carRoot.transform.localRotation);
-
-        //Scelgo una tra le ruote disponibili (da migliorare)
-        int randomWheelIdx = Random.Range(0, 6);
-
-        copyCarParts = randomizedCar.partsConfigurations.ToList();
-
-        int issues = 3;
-
-        for (int i = 0; i < issues; i++) 
-        { 
-            partConfiguration = copyCarParts[Random.Range(0, copyCarParts.Count)];
-            
-            GeneratePart(partConfiguration, randomWheelIdx, true, carRoot);
-
-            copyCarParts.Remove(partConfiguration);
-        }
-
-        for (int i = 0; i < copyCarParts.Count; i++)
+        for (int i = 0; i < partsConfigurations.Length; i++)
         {
-            partConfiguration = copyCarParts[Random.Range(0, copyCarParts.Count)];
-            
-            GeneratePart(partConfiguration, randomWheelIdx, false, carRoot);
+            int randomIndex = Random.Range(0, partsConfigurations.Length);
+            PartConfiguration tmp = partsConfigurations[randomIndex];
+            partsConfigurations[randomIndex] = partsConfigurations[i];
+            partsConfigurations[i] = tmp;
         }
-
-        return randomizedCar.carRoot.gameObject.GetComponent<Car>();
     }
 
-    private void GeneratePart (PartConfiguration partConfiguration, int randomWheelIdx, bool damaged, GameObject carRoot)
+    // FIXME: randomWheelIndex selection
+    public Car GetCar()
     {
-        if(damaged)
-        prefab = partConfiguration.damaged[partConfiguration.damaged.Length > 1 ? randomWheelIdx : 0];
-        else
-        prefab = partConfiguration.repaired[partConfiguration.repaired.Length > 1 ? randomWheelIdx : 0];
-        
-        instance = GameObject.Instantiate(prefab, Vector3.zero, Quaternion.identity);
-        parent = carRoot.transform.Find(partConfiguration.name);
-        if (parent)
+        CarConfiguration randomCar = carConfiguration[Random.Range(0, carConfiguration.Length)];
+        GameObject carInstance = GameObject.Instantiate(randomCar.carRoot, Vector3.zero, randomCar.carRoot.transform.localRotation);
+        int randomWheeIndex = Random.Range(0, 6);
+
+        int issuesNumber = GameManager.Instance.repairedCars / 3 + 1;
+        int selectedIssues = 0;
+        Shuffle(randomCar.partsConfigurations);
+        for (int i = 0; i < randomCar.partsConfigurations.Length; i++)
         {
-            instance.transform.SetParent(parent);
-            instance.transform.localPosition = Vector3.zero;
-            instance.transform.localEulerAngles = Vector3.zero;
+            PartConfiguration partConfiguration = randomCar.partsConfigurations[i];
+            GameObject prefab;
+            if (selectedIssues < issuesNumber)
+            {
+                prefab = partConfiguration.damaged[partConfiguration.damaged.Length > 1 ? randomWheeIndex : 0];
+            }
+            else
+            {
+                prefab = partConfiguration.repaired[partConfiguration.repaired.Length > 1 ? randomWheeIndex : 0];
+            }
+
+            GameObject instance = GameObject.Instantiate(prefab, Vector3.zero, Quaternion.identity);
+            Transform parent = carInstance.transform.Find(partConfiguration.name);
+            if (parent)
+            {
+                instance.transform.SetParent(parent);
+                instance.transform.localPosition = Vector3.zero;
+                instance.transform.localEulerAngles = Vector3.zero;
+            }
+
+            selectedIssues++;
         }
+
+
+        return randomCar.carRoot.gameObject.GetComponent<Car>();
     }
 
     [ContextMenu("Create car in editor")]
     private void CreateCarInEditor()
     {
-        Car car = GetRandomCar(1);
+        Car car = GetCar();
         car.transform.position = Vector3.zero;
     }
 }

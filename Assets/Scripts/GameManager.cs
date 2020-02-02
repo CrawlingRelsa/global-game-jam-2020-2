@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Cars")]
     public float points = 0f;
+    public int repairedCars = 0;
     public Car[] availableCars;
     public List<Car> cars;
 
@@ -109,7 +110,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        Car car = damagedCarConfigurator.GetRandomCar(1);
+        Car car = damagedCarConfigurator.GetCar();
         cars.Add(car);
 
         GameObject instance = GameObject.Instantiate(car.gameObject, startPoint.position, car.transform.rotation);
