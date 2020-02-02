@@ -5,18 +5,18 @@ using UnityEngine;
 public class GlassAction : PartAction
 {
     [Header("Tutto ciò che vuoi mettere lo fai qui")]
-    public AudioClip breakCLip;
+    public AudioClip breakClip;
     public AudioClip hammerClip;
     public GameObject repairedGlass;
 
     //
     private GameObject child;
     private AudioSource glassSource;
-    private ParticleSystem breakParticles;
+    //private ParticleSystem breakParticles;
 
     public void Start()
     {
-        breakParticles = GetComponent<ParticleSystem>();
+        //breakParticles = GetComponent<ParticleSystem>();
         glassSource = GetComponent<AudioSource>();
         child = transform.GetChild(0).gameObject;
     }
@@ -48,9 +48,9 @@ public class GlassAction : PartAction
 
     private void Break()
     {
-        glassSource.clip = breakCLip;
+        glassSource.clip = breakClip;
         glassSource.Play();
-        breakParticles.Play();
+        //breakParticles.Play();
         Destroy(child);
     }
 }
