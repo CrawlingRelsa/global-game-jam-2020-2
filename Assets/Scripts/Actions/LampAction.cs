@@ -5,16 +5,11 @@ using UnityEngine;
 public class LampAction : PartAction
 {
     [Header("Tutto ciò che vuoi mettere lo fai qui")]
-    public AudioClip lampClip;
-    // TODO: qualunque cosa sia la luce
-
-    private GameObject child;
-    private AudioSource lampSource;
+    private Animator anim;
 
     public void Start()
     {
-        lampSource = GetComponent<AudioSource>();
-        child = transform.GetChild(0).gameObject;
+        anim = GetComponent<Animator>();
     }
 
     public override void HandleAction()
@@ -30,8 +25,8 @@ public class LampAction : PartAction
 
     private void Change()
     {
-        lampSource.clip = lampClip;
-        lampSource.Play();
+        anim.StopPlayback();
+        Destroy(anim);
         //TODO: qualunque cosa sia la luce
     }
 }

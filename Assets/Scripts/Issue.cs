@@ -11,7 +11,6 @@ public class Issue
 
     public void SolveIssue(Transform part)
     {
-        Debug.Log("issue");
         part.GetComponent<PartAction>().HandleAction();
     }
 }
