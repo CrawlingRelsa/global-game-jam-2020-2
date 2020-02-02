@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     public float carSpawnInterval = 5f;
     public float elapsedTime = 0f;
     public float elapsedTimeSinceLastCarSpawn = 0f;
+    public float startPositionOffset = 20f;
     #endregion
 
     #region PRIVATE VARIABLES
@@ -41,9 +42,10 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
+
     void Start()
     {
-        startPoint.position = new Vector3(destinationPoint.position.x, destinationPoint.position.y, destinationPoint.position.z - (carBoxLength * carSlots));
+        startPoint.position = new Vector3(destinationPoint.position.x, destinationPoint.position.y, destinationPoint.position.z - (carBoxLength * carSlots) - startPositionOffset);
     }
 
     void Update()
