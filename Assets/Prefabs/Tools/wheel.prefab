@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toolType: 2
-  isPermanent: 1
+  isPermanent: 0
 --- !u!1 &2881409221172804736
 GameObject:
   m_ObjectHideFlags: 0
