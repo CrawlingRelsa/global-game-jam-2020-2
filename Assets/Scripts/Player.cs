@@ -109,7 +109,7 @@ public class Player : MonoBehaviour
         //reset forward 
         forwardTool = null;
         forwardPart = null;
-        //float distanceRay = viewDistance + (hand ? hand.GetComponent<Collider>().bounds.extents.z * 2 : 0);
+        float distanceRay = viewDistance + (hand ? hand.GetComponent<Collider>().bounds.extents.z * 2 : 0);
         //track dell'oggetto davanti
         Ray ray = new Ray(transform.position, transform.forward);
         //sono davanti ad un tool o ad una parte
@@ -119,7 +119,7 @@ public class Player : MonoBehaviour
             //se non ho il tool in mano
             if (hand == null)
             {
-                if (Physics.BoxCast(transform.position, extents / 2, transform.forward, out raycastHit, transform.rotation, viewDistance, LayerMask.GetMask(new string[] { "Tool" })))
+                if (Physics.BoxCast(transform.position, extents / 2, transform.forward, out raycastHit, transform.rotation, distanceRay, LayerMask.GetMask(new string[] { "Tool" })))
 
                 {
                     //if (Physics.Raycast(transform.position, transform.forward, out raycastHit, distanceRay, LayerMask.GetMask(new string[] { "Tool" })))
@@ -130,7 +130,7 @@ public class Player : MonoBehaviour
             //se ho un tool in mano
             else
             {
-                RaycastHit[] hits = Physics.BoxCastAll(transform.position, extents / 2, transform.forward, transform.rotation, viewDistance, LayerMask.GetMask(new string[] { "Part" }));
+                RaycastHit[] hits = Physics.BoxCastAll(transform.position, extents / 2, transform.forward, transform.rotation, distanceRay, LayerMask.GetMask(new string[] { "Part" }));
                 //RaycastHit[] hits = Physics.RaycastAll(transform.position, transform.forward, distanceRay, LayerMask.GetMask(new string[] { "Part" }));
                 if (hits.Length > 0)
                 {
@@ -140,6 +140,7 @@ public class Player : MonoBehaviour
                         Part selected = item.transform.GetComponent<Part>();
                         if (selected)
                         {
+                            Debug.Log(hand.IsCompatible(selected));
                             if (selected.issues.Count > 0 && hand.IsCompatible(selected)) forwardPart = selected;
                             return;
                         }

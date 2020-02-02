@@ -10,6 +10,7 @@ public class PaintAction : PartAction
 
     private GameObject child;
     private AudioSource paintSource;
+    private Color startingColor;
 
     public void Start()
     {
@@ -19,6 +20,7 @@ public class PaintAction : PartAction
 
     public override void HandleAction()
     {
+        Debug.Log("CIAO");
         switch (currentStatus)
         {
             case 0:
@@ -32,7 +34,26 @@ public class PaintAction : PartAction
     {
         paintSource.clip = sprayClip;
         paintSource.Play();
+        StartCoroutine(FadeOut(paintSource, 1f));
+        Vector3 oldScale = child.transform.localScale;
         Destroy(child);
         child = Instantiate(carPainted, transform.position, transform.rotation, transform);
+        child.transform.localScale = oldScale;
+        child.GetComponent<Material>().color = startingColor;
+    }
+
+    public static IEnumerator FadeOut(AudioSource audioSource, float FadeTime)
+    {
+        float startVolume = audioSource.volume;
+
+        while (audioSource.volume > 0)
+        {
+            audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
+
+            yield return null;
+        }
+
+        audioSource.Stop();
+        audioSource.volume = startVolume;
     }
 }
