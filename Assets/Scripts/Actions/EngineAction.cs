@@ -12,11 +12,15 @@ public class EngineAction : PartAction
     //
     private GameObject child;
     private AudioSource engineSource;
+    //
+    Transform oldPosition;
+
 
     public void Start()
     {
         engineSource = GetComponent<AudioSource>();
-        child = transform.GetChild(0).gameObject;
+        child = GetComponentInChildren<ParticleSystem>().gameObject;
+        oldPosition = child.transform;
     }
 
     public override void HandleAction()
@@ -47,6 +51,6 @@ public class EngineAction : PartAction
         engineSource.clip = extinguishClip;
         engineSource.Play();
         Destroy(child);
-        child = Instantiate(smokeParticles, transform.position, transform.rotation, transform);
+        child = Instantiate(smokeParticles, oldPosition.position, oldPosition.rotation, transform);
     }
 }

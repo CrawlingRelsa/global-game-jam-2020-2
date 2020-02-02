@@ -20,7 +20,6 @@ public class PaintAction : PartAction
 
     public override void HandleAction()
     {
-        Debug.Log("CIAO");
         switch (currentStatus)
         {
             case 0:
