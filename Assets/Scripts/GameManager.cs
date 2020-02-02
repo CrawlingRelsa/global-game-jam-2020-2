@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        Car car = damagedCarConfigurator.GetRandomCar();
+        Car car = damagedCarConfigurator.GetRandomCar(1);
         cars.Add(car);
 
         GameObject instance = GameObject.Instantiate(car.gameObject, startPoint.position, car.transform.rotation);
