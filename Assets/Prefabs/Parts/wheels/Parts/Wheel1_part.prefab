@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6422575698175268211}
   - component: {fileID: 2767012999167895434}
   - component: {fileID: 3478364595155905875}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wheel1_part
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,6 +197,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: wheel_1_damaged
       objectReference: {fileID: 0}
+    - target: {fileID: 53573233870700234, guid: 31aaa4d7dec25490fa0dc77104802fb8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 53573233870700235, guid: 31aaa4d7dec25490fa0dc77104802fb8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -251,6 +256,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 53573235051145459, guid: 31aaa4d7dec25490fa0dc77104802fb8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 53573235694497602, guid: 31aaa4d7dec25490fa0dc77104802fb8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 53573233870700233, guid: 31aaa4d7dec25490fa0dc77104802fb8, type: 3}
