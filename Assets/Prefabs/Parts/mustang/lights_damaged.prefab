@@ -94,9 +94,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   car: {fileID: 0}
-  points: 10
+  points: 0
   issues:
-  - compatibleTool: 7
+  - minimumRepairTime: 10
+    maximumRepairTime: 15
+    compatibleTool: 7
 --- !u!65 &662919483
 BoxCollider:
   m_ObjectHideFlags: 0

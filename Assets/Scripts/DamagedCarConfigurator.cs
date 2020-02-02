@@ -71,7 +71,7 @@ public class DamagedCarConfigurator : MonoBehaviour
         }
 
 
-        return randomCar.carRoot.gameObject.GetComponent<Car>();
+        return carInstance.GetComponent<Car>();
     }
 
     [ContextMenu("Create car in editor")]

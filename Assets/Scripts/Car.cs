@@ -5,7 +5,7 @@ using System.Linq;
 
 public class Car : MonoBehaviour
 {
-    public float points;
+    public int points;
     public List<Part> parts;
     public float carSpeed;
     public float carLength;
@@ -17,9 +17,14 @@ public class Car : MonoBehaviour
     private Ray ray;
 
     [ContextMenu("LoadParts")]
-    private void LoadParts()
+    public void LoadParts()
     {
         parts = GetComponentsInChildren<Part>().ToList();
+    }
+
+    public float GetRepairTime()
+    {
+        return parts.Aggregate(0f, (repairTime, part) => repairTime + part.GetRepairTime());
     }
 
     public void Fix(Part part)
@@ -28,22 +33,24 @@ public class Car : MonoBehaviour
         parts.Remove(part);
         if (parts.Count == 0)
         {
-            GameManager.Instance.points += this.points;
+            GameManager.Instance.points += points;
             GameManager.Instance.repairedCars += 1;
         }
+
+        GameManager.Instance.uiController.UpdatePoints(GameManager.Instance.repairedCars, GameManager.Instance.points);
     }
 
     void Update()
     {
         //Se la macchina non trova nulla davanti
-        Vector3 raycastOrigin = transform.position + (Vector3.up) + Vector3.right * carLength / 2;
-        if (!Physics.Raycast(raycastOrigin, transform.TransformDirection(Vector3.right), out hit, raycastLength, layerMask))
+        Vector3 raycastOrigin = transform.position + (Vector3.up) + Vector3.forward * carLength / 2;
+        if (!Physics.Raycast(raycastOrigin, -transform.TransformDirection(Vector3.up), out hit, raycastLength, layerMask))
         {
             //Se non è arrivata a destinazione o se non è più da riparare
-            if (transform.position.x < GameManager.Instance.destinationPoint.position.x || parts.Count == 0)
+            if (transform.position.z < GameManager.Instance.destinationPoint.position.z || parts.Count == 0)
             {
                 //Vado avanti
-                transform.position += transform.TransformDirection(Vector3.right) * carSpeed * Time.deltaTime;
+                transform.position += -transform.TransformDirection(Vector3.up) * carSpeed * Time.deltaTime;
             }
         }
 
@@ -52,7 +59,7 @@ public class Car : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Vector3 raycastOrigin = transform.position + (Vector3.up) + Vector3.right * carLength / 2;
-        Gizmos.DrawLine(raycastOrigin, raycastOrigin + transform.TransformDirection(Vector3.right) * raycastLength);
+        Vector3 raycastOrigin = transform.position + (Vector3.up) + Vector3.forward * carLength / 2;
+        Gizmos.DrawLine(raycastOrigin, raycastOrigin + -transform.TransformDirection(Vector3.up) * raycastLength);
     }
 }

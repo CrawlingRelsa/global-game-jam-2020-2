@@ -140,11 +140,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5791392030485504587}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 965d0e76ae31fd14cb4eff171060a769, type: 3}
+  m_Script: {fileID: 11500000, guid: 901d18cd6bbf69f4d8faca8e6d4f3fa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   currentStatus: 0
-  wrenchClip: {fileID: 8300000, guid: 1e1612631889042739e47ecf9c57ef0d, type: 3}
+  wrenchClip: {fileID: 8300000, guid: 786b618db18e349eeb6812dd365f362f, type: 3}
   screwClip: {fileID: 8300000, guid: f2e56986681b04299b195a794389b7cb, type: 3}
   repaired: {fileID: 5318937382963608054, guid: e8e681aa024624ad28a0721246951a86,
     type: 3}
@@ -178,8 +178,12 @@ MonoBehaviour:
   car: {fileID: 0}
   points: 20
   issues:
-  - compatibleTool: 1
-  - compatibleTool: 2
+  - minimumRepairTime: 10
+    maximumRepairTime: 15
+    compatibleTool: 1
+  - minimumRepairTime: 10
+    maximumRepairTime: 15
+    compatibleTool: 2
 --- !u!1001 &6296013404022288272
 PrefabInstance:
   m_ObjectHideFlags: 0

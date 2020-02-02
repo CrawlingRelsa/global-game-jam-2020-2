@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     #region PUBLIC VARIABLES
+    public Player player;
     public bool isGameRunning = false;
 
     [Header("Controllers")]
@@ -16,9 +17,9 @@ public class GameManager : MonoBehaviour
     public DamagedCarConfigurator damagedCarConfigurator;
 
     [Header("Cars")]
-    public float points = 0f;
+    public int points = 0;
     public int repairedCars = 0;
-    public Car[] availableCars;
+    public float difficultyIncreasePerRepairCar = 0.5f;
     public List<Car> cars;
 
     [Header("Car params")]
@@ -26,9 +27,10 @@ public class GameManager : MonoBehaviour
     public float carBoxLength = 5f;
     public Transform startPoint;
     public Transform destinationPoint;
-    public float carSpawnInterval = 5f;
+    public float carRepairTime;
     public float elapsedTime = 0f;
     public float elapsedTimeSinceLastCarSpawn = 0f;
+    public float startPositionOffset = 20f;
     #endregion
 
     #region PRIVATE VARIABLES
@@ -41,17 +43,22 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
+
     void Start()
     {
-        startPoint.position = new Vector3(destinationPoint.position.x - (carBoxLength * carSlots), destinationPoint.position.y, destinationPoint.position.z);
+        startPoint.position = new Vector3(destinationPoint.position.x, destinationPoint.position.y, destinationPoint.position.z - (carBoxLength * carSlots) - startPositionOffset);
     }
 
     void Update()
     {
+        // FIXME
+        player.canMove = isGameRunning;
+
         if (!isGameRunning) return;
 
         elapsedTime += Time.deltaTime;
-        if (elapsedTime >= elapsedTimeSinceLastCarSpawn + carSpawnInterval)
+
+        if (elapsedTime >= elapsedTimeSinceLastCarSpawn + carRepairTime)
         {
             SpawnCar();
             elapsedTimeSinceLastCarSpawn = elapsedTime;
@@ -70,11 +77,15 @@ public class GameManager : MonoBehaviour
         isGameRunning = true;
 
         uiController.Play();
+
+        SpawnCar();
     }
 
     public void Pause()
     {
         Debug.Log("Pause");
+
+        isGameRunning = false;
 
         uiController.Pause();
     }
@@ -82,6 +93,8 @@ public class GameManager : MonoBehaviour
     public void Resume()
     {
         Debug.Log("Resume");
+
+        isGameRunning = true;
 
         uiController.Resume();
     }
@@ -111,10 +124,12 @@ public class GameManager : MonoBehaviour
         }
 
         Car car = damagedCarConfigurator.GetCar();
+        car.LoadParts();
         cars.Add(car);
 
-        GameObject instance = GameObject.Instantiate(car.gameObject, startPoint.position, car.transform.rotation);
-        instance.layer = LayerMask.NameToLayer("Car");
+        carRepairTime = car.GetRepairTime();
+        car.transform.position = startPoint.position;
+        car.gameObject.layer = LayerMask.NameToLayer("Car");
     }
 
     private void GameOver()

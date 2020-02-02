@@ -1,12 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Part : MonoBehaviour
 {
     public Car car;
-    public float points;
+    public int points;
     public List<Issue> issues = new List<Issue>();
+
+    public float GetRepairTime()
+    {
+        return issues.Aggregate(0f, (repairTime, issue) => repairTime + Mathf.Max(issue.minimumRepairTime, issue.maximumRepairTime - GameManager.Instance.repairedCars * GameManager.Instance.difficultyIncreasePerRepairCar));
+
+    }
 
     public Issue CurrentAction
     {
