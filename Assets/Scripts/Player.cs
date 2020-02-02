@@ -9,6 +9,11 @@ public class Player : MonoBehaviour
     public float speed = 2;
     public bool canMove = true;
     public bool isInteracting = true;
+    [Header("Components")]
+    public AudioSource movingAudio;
+    [Header("CubeCast")]
+    public Vector3 extents;
+    public Vector3 center;
     public float viewDistance = 2f;
     [Header("Tool Manager")]
     public Part forwardPart;
@@ -19,6 +24,8 @@ public class Player : MonoBehaviour
     Rigidbody rb;
     private Vector3 forwardVector;
     private Vector3 rightVector;
+    private Bounds myBounds;
+    private AudioSource audioSrc;
 
 
     // Start is called before the first frame update
@@ -32,7 +39,14 @@ public class Player : MonoBehaviour
         rightVector = Camera.main.transform.right;
         rightVector.y = 0;
         rightVector.Normalize();
+        //bounds
+        myBounds = GetComponent<Collider>().bounds;
+        //audio
+        audioSrc = GetComponent<AudioSource>();
+        audioSrc.Play();
     }
+
+
     private void PickTool(Tool tool)
     {
         if (hand == null)
@@ -50,7 +64,8 @@ public class Player : MonoBehaviour
             hand.transform.LookAt(transform.position + (transform.forward * 10f));
             hand.transform.SetParent(this.transform);
             hand.transform.GetComponent<Rigidbody>().isKinematic = true;
-            hand.transform.position = transform.position + (transform.forward * (GetComponent<Collider>().bounds.extents.z + 0.5f)) + transform.up;
+            hand.transform.GetComponent<Collider>().isTrigger = true;
+            hand.transform.position = transform.position + (transform.forward * (myBounds.extents.z + 0.5f)) + transform.up;
         }
         else
         {
@@ -60,9 +75,9 @@ public class Player : MonoBehaviour
 
     private void ReleaseTool()
     {
-        //TODO: animazione e appoggio la roba
         hand.transform.SetParent(null);
         hand.transform.GetComponent<Rigidbody>().isKinematic = false;
+        hand.transform.GetComponent<Collider>().isTrigger = false;
         hand = null;
 
     }
@@ -94,7 +109,7 @@ public class Player : MonoBehaviour
         //reset forward 
         forwardTool = null;
         forwardPart = null;
-        float distanceRay = viewDistance + (hand ? hand.GetComponent<Collider>().bounds.extents.z * 2 : 0);
+        //float distanceRay = viewDistance + (hand ? hand.GetComponent<Collider>().bounds.extents.z * 2 : 0);
         //track dell'oggetto davanti
         Ray ray = new Ray(transform.position, transform.forward);
         //sono davanti ad un tool o ad una parte
@@ -104,21 +119,27 @@ public class Player : MonoBehaviour
             //se non ho il tool in mano
             if (hand == null)
             {
-                if (Physics.Raycast(transform.position, transform.forward, out raycastHit, distanceRay, LayerMask.GetMask(new string[] { "Tool" })))
+                if (Physics.BoxCast(transform.position, extents / 2, transform.forward, out raycastHit, transform.rotation, viewDistance, LayerMask.GetMask(new string[] { "Tool" })))
+
+                {
+                    //if (Physics.Raycast(transform.position, transform.forward, out raycastHit, distanceRay, LayerMask.GetMask(new string[] { "Tool" })))
+                    Debug.Log(raycastHit.transform.name);
                     forwardTool = raycastHit.transform.GetComponent<Tool>();
+                }
             }
             //se ho un tool in mano
             else
             {
-                RaycastHit[] hits = Physics.RaycastAll(transform.position, transform.forward, distanceRay, LayerMask.GetMask(new string[] { "Part" }));
+                RaycastHit[] hits = Physics.BoxCastAll(transform.position, extents / 2, transform.forward, transform.rotation, viewDistance, LayerMask.GetMask(new string[] { "Part" }));
+                //RaycastHit[] hits = Physics.RaycastAll(transform.position, transform.forward, distanceRay, LayerMask.GetMask(new string[] { "Part" }));
                 if (hits.Length > 0)
                 {
                     foreach (var item in hits)
                     {
+                        Debug.Log(item.transform.name);
                         Part selected = item.transform.GetComponent<Part>();
                         if (selected)
                         {
-                          
                             if (selected.issues.Count > 0 && hand.IsCompatible(selected)) forwardPart = selected;
                             return;
                         }
@@ -127,7 +148,6 @@ public class Player : MonoBehaviour
 
             }
             //mi aspetto che non sia entrambe nello stesso oggetto se no problemi di level design
-
         }
     }
 
@@ -140,8 +160,16 @@ public class Player : MonoBehaviour
             dir = forwardVector * Input.GetAxisRaw("Vertical") + rightVector * Input.GetAxisRaw("Horizontal");
             //look at forward
             transform.LookAt(transform.position + dir);
-            if (dir.magnitude == 0) rb.velocity = Vector3.zero;
-            else rb.velocity = transform.forward * speed;
+            if (dir.magnitude == 0)
+            {
+                rb.velocity = Vector3.zero;
+                audioSrc.volume = .01f;
+            }
+            else
+            {
+                rb.velocity = transform.forward * speed;
+                audioSrc.volume = .5f;
+            }
         }
     }
 
@@ -163,11 +191,4 @@ public class Player : MonoBehaviour
         }
     }
 
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        float distanceRay = viewDistance + (hand ? hand.GetComponent<Collider>().bounds.extents.z * 2 : 0);
-        Gizmos.DrawLine(transform.position, transform.position + (transform.forward * distanceRay));
-    }
 }
