@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2090730433212177838}
   - component: {fileID: 3705701786507570227}
   - component: {fileID: 2878518406879669440}
-  - component: {fileID: 4274184647646956824}
+  - component: {fileID: 899485839}
   m_Layer: 9
   m_Name: HammerPart
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1385706885126925542}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -10.218315, y: 0.9971765, z: -2.7414184}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 7233452733297216013}
   m_Father: {fileID: 0}
@@ -63,7 +63,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0592194, y: 1.2690803, z: 1}
   m_Center: {x: 0.02960968, y: 0.4108048, z: 0}
---- !u!114 &4274184647646956824
+--- !u!114 &899485839
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toolType: 3
-  isPermanent: 1
+  isPermanent: 0
 --- !u!1001 &2384891440894042391
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -20,6 +20,10 @@ public class Car : MonoBehaviour
     public void LoadParts()
     {
         parts = GetComponentsInChildren<Part>().ToList();
+        for (int i = 0; i < parts.Count; i++)
+        {
+            parts[i].car = this;
+        }
     }
 
     public float GetRepairTime()

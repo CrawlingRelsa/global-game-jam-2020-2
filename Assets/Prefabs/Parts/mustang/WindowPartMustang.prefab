@@ -249,6 +249,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: windows_damaged
       objectReference: {fileID: 0}
+    - target: {fileID: 4008813757729590261, guid: efb8aa953936c4f2087a97da9da83d9e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f7a043c13dbebd0429cdf721d9f717b1, type: 2}
     m_RemovedComponents:
     - {fileID: 4341689376558661112, guid: efb8aa953936c4f2087a97da9da83d9e, type: 3}
     - {fileID: 1232634749, guid: efb8aa953936c4f2087a97da9da83d9e, type: 3}

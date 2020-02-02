@@ -31,6 +31,11 @@ public class Part : MonoBehaviour
         {
             issues[0].SolveIssue(transform);
             issues.RemoveAt(0);
+
+            if (issues.Count == 0)
+            {
+                car.Fix(this);
+            }
         }
 
     }

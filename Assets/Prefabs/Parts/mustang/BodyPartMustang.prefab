@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5651697354573177974}
   - component: {fileID: 3522714361998164674}
   - component: {fileID: 7539444348411043590}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BodyPartMustang
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -245,6 +245,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: body_damaged
       objectReference: {fileID: 0}
+    - target: {fileID: 6446739989001445483, guid: 4d1d3795964f14c89a2463e83e1720e9,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f4cae19bcafd0444cad838556d459568, type: 2}
     m_RemovedComponents:
     - {fileID: 3890043113522134525, guid: 4d1d3795964f14c89a2463e83e1720e9, type: 3}
     - {fileID: 988243346, guid: 4d1d3795964f14c89a2463e83e1720e9, type: 3}
