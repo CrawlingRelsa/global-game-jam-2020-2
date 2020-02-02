@@ -5,6 +5,8 @@ using UnityEngine;
 public class TyreAction : PartAction
 {
     [Header("Tutto ciò che vuoi mettere lo fai qui")]
+    public AudioClip wrenchClip;
+    public AudioClip screwClip;
     public GameObject repaired;
     public float disappearDuration = 0.3f;
     public iTween.EaseType disappearEaseType = iTween.EaseType.easeInOutCubic;
@@ -13,9 +15,11 @@ public class TyreAction : PartAction
     //
     private GameObject child;
     private Vector3 initialScale;
+    private AudioSource tyreSource;
 
     public void Start()
     {
+        tyreSource = GetComponent<AudioSource>();
         child = transform.GetChild(0).gameObject;
         initialScale = transform.localScale;
     }
@@ -38,6 +42,8 @@ public class TyreAction : PartAction
 
     private void Replace()
     {
+        tyreSource.clip = screwClip;
+        tyreSource.Play();
         Destroy(child);
         child = Instantiate(repaired, transform.position, transform.rotation, transform);
         child.transform.localScale = Vector3.zero;
@@ -53,6 +59,8 @@ public class TyreAction : PartAction
 
     private void Shrink()
     {
+        tyreSource.clip = wrenchClip;
+        tyreSource.Play();
         iTween.ScaleTo(child.gameObject, iTween.Hash(
             "scale", Vector3.zero,
             "time", disappearDuration,
