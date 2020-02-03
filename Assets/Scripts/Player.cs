@@ -51,16 +51,23 @@ public class Player : MonoBehaviour
     {
         if (hand == null)
         {
-            if (tool.transform.parent)
+            if (tool.isPermanent)
             {
+                // assign the tool to the player hand
+                hand = tool;
+            }
+            else
+            {
+                // create a new tool instance and assign it to the player hand
                 Store store = tool.GetComponentInParent<Store>();
                 if (store)
                 {
-                    store.Create();
+                    GameObject toolInstance = store.CreateToolInstance();
+                    hand = toolInstance.gameObject.GetComponent<Tool>();
                 }
             }
 
-            hand = tool;
+
             hand.transform.LookAt(transform.position + (transform.forward * 10f));
             hand.transform.SetParent(this.transform);
             hand.transform.GetComponent<Rigidbody>().isKinematic = true;
