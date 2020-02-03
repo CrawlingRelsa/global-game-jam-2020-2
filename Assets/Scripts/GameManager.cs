@@ -61,6 +61,9 @@ public class GameManager : MonoBehaviour
 
         elapsedTime += Time.deltaTime;
 
+        if (elapsedTime > 0 && elapsedTimeSinceLastCarSpawn > 0)
+            uiController.UpdateNormalizedSpawnTime(1 - (elapsedTime - elapsedTimeSinceLastCarSpawn) / carRepairTime);
+
         if (elapsedTime >= elapsedTimeSinceLastCarSpawn + carRepairTime)
         {
             SpawnCar();
@@ -110,9 +113,9 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public void Quit()
+    public void Exit()
     {
-        Application.Quit();
+        uiController.Exit();
     }
 
     #endregion
