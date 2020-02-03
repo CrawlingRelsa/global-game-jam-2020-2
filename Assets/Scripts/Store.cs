@@ -13,8 +13,6 @@ public class Store : MonoBehaviour
 
     public void Create()
     {
-        Debug.Log("create called!");
         GameObject instance = GameObject.Instantiate(tool.gameObject, transform.position, transform.rotation);
-        instance.transform.SetParent(null);
     }
 }

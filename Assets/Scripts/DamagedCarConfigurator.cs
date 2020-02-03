@@ -40,7 +40,7 @@ public class DamagedCarConfigurator : MonoBehaviour
     {
         CarConfiguration randomCar = carConfiguration[Random.Range(0, carConfiguration.Length)];
         GameObject carInstance = GameObject.Instantiate(randomCar.carRoot, Vector3.zero, randomCar.carRoot.transform.localRotation);
-        int randomWheeIndex = Random.Range(0, 6);
+        int randomWheelIndex = Random.Range(0, 6);
 
         int issuesNumber = GameManager.Instance.repairedCars / 3 + 1;
         int selectedIssues = 0;
@@ -53,13 +53,18 @@ public class DamagedCarConfigurator : MonoBehaviour
             GameObject prefab;
             if (selectedIssues < issuesNumber)
             {
-                if (partConfiguration.repaired.Length == 0) continue;
 
-                prefab = partConfiguration.damaged[partConfiguration.damaged.Length > 1 ? randomWheeIndex : 0];
+
+                prefab = partConfiguration.damaged[partConfiguration.damaged.Length > 1 ? randomWheelIndex : 0];
             }
             else
             {
-                prefab = partConfiguration.repaired[partConfiguration.repaired.Length > 1 ? randomWheeIndex : 0];
+                if (partConfiguration.repaired.Length == 0)
+                {
+                    continue;
+                }
+
+                prefab = partConfiguration.repaired[partConfiguration.repaired.Length > 1 ? randomWheelIndex : 0];
             }
 
             GameObject instance = GameObject.Instantiate(prefab, Vector3.zero, Quaternion.identity);

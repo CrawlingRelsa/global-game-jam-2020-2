@@ -32,13 +32,15 @@ public class Car : MonoBehaviour
         parts = GetComponentsInChildren<Part>().ToList();
         for (int i = 0; i < parts.Count; i++)
         {
-            parts[i].car = this;
+            parts[i].SetCar(this);
         }
     }
 
     public float GetRepairTime()
     {
-        return parts.Aggregate(0f, (repairTime, part) => repairTime + part.GetRepairTime());
+        float x = parts.Aggregate(0f, (repairTime, part) => repairTime + part.GetRepairTime());
+        Debug.Log(x);
+        return x;
     }
 
     public void Fix(Part part)

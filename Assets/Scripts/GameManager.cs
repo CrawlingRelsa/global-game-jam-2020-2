@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     public float carBoxLength = 5f;
     public Transform startPoint;
     public Transform destinationPoint;
-    public float carRepairTime;
+    public float carRepairTime = 0f;
     public float elapsedTime = 0f;
     public float elapsedTimeSinceLastCarSpawn = 0f;
     public float startPositionOffset = 20f;
@@ -54,37 +54,43 @@ public class GameManager : MonoBehaviour
         // FIXME
         player.canMove = isGameRunning;
 
-        if (!isGameRunning) return;
+        if (!isGameRunning)
+        {
+            return;
+        }
 
         elapsedTime += Time.deltaTime;
 
         if (elapsedTime >= elapsedTimeSinceLastCarSpawn + carRepairTime)
         {
             SpawnCar();
+
             elapsedTimeSinceLastCarSpawn = elapsedTime;
+
+            if (cars.Count > carSlots)
+            {
+                GameOver();
+                return;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
+        {
             Pause();
+        }
     }
     #endregion
 
     #region PUBLIC INTERFACE
     public void Play()
     {
-        Debug.Log("Play");
-
         isGameRunning = true;
 
         uiController.Play();
-
-        SpawnCar();
     }
 
     public void Pause()
     {
-        Debug.Log("Pause");
-
         isGameRunning = false;
 
         uiController.Pause();
@@ -92,8 +98,6 @@ public class GameManager : MonoBehaviour
 
     public void Resume()
     {
-        Debug.Log("Resume");
-
         isGameRunning = true;
 
         uiController.Resume();
@@ -117,19 +121,13 @@ public class GameManager : MonoBehaviour
     private void SpawnCar()
     {
         Car car = damagedCarConfigurator.GetCar();
-        car.LoadParts();
-        cars.Add(car);
-
-        carRepairTime = car.GetRepairTime();
         car.transform.position = startPoint.position;
         car.gameObject.layer = LayerMask.NameToLayer("Car");
 
-        if (cars.Count > carSlots)
-        {
-            //TODO Game Over
-            GameOver();
-            return;
-        }
+        car.LoadParts();
+        carRepairTime = car.GetRepairTime();
+
+        cars.Add(car);
     }
 
     private void GameOver()

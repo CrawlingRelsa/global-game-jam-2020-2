@@ -5,7 +5,7 @@ using System.Linq;
 
 public class Part : MonoBehaviour
 {
-    public Car car;
+    private Car car;
     public int points;
     public List<Issue> issues = new List<Issue>();
 
@@ -23,6 +23,11 @@ public class Part : MonoBehaviour
                 return issues[0];
             return null;
         }
+    }
+
+    public void SetCar(Car car)
+    {
+        this.car = car;
     }
 
     public void Repair()
