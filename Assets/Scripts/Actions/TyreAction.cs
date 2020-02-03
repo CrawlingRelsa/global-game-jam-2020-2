@@ -14,6 +14,7 @@ public class TyreAction : PartAction
 
     //
     private GameObject child;
+    private ParticleSystem particleStem;
     private Vector3 initialScale;
     private AudioSource tyreSource;
 
@@ -21,6 +22,7 @@ public class TyreAction : PartAction
     {
         tyreSource = GetComponent<AudioSource>();
         child = transform.GetChild(0).gameObject;
+        particleStem = GetComponentInChildren<ParticleSystem>();
         initialScale = transform.localScale;
     }
 
@@ -61,6 +63,10 @@ public class TyreAction : PartAction
     {
         tyreSource.clip = wrenchClip;
         tyreSource.Play();
+        if (particleStem)
+        {
+            Destroy(particleStem.gameObject);
+        }
         iTween.ScaleTo(child.gameObject, iTween.Hash(
             "scale", Vector3.zero,
             "time", disappearDuration,
