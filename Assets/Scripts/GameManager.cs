@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region PRIVATE VARIABLES
-
+    private bool playerHasPlayedGame = false;
     #endregion
 
     #region UNITY INTERFACE
@@ -76,17 +76,29 @@ public class GameManager : MonoBehaviour
                 return;
             }
         }
+    }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+    private void LateUpdate()
+    {
+        //se premo il tasto azione
+        if (Input.GetButtonDown("Cancel"))
         {
-            Pause();
+            if (!playerHasPlayedGame)
+                return;
+
+            if (isGameRunning)
+                Pause();
+            else
+                Resume();
         }
     }
+
     #endregion
 
     #region PUBLIC INTERFACE
     public void Play()
     {
+        playerHasPlayedGame = true;
         isGameRunning = true;
 
         uiController.Play();
@@ -135,6 +147,7 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
+        playerHasPlayedGame = false;
         isGameRunning = false;
 
         uiController.GameOver();

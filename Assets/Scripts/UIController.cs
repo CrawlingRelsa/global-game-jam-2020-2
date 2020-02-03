@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
@@ -45,6 +46,7 @@ public class UIController : MonoBehaviour
     public void Pause()
     {
         pauseButton.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(pauseButton);
         playButton.SetActive(false);
         restartButton.SetActive(false);
 
@@ -77,6 +79,7 @@ public class UIController : MonoBehaviour
         panelPause.SetActive(true);
 
         restartButton.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(restartButton);
         playButton.SetActive(false);
         pauseButton.SetActive(false);
     }
@@ -88,6 +91,7 @@ public class UIController : MonoBehaviour
 
     public void QuitApplication()
     {
+        Debug.Log("Application Quit");
         Application.Quit();
     }
 
