@@ -8,11 +8,22 @@ public class Store : MonoBehaviour
 
     public void Start()
     {
-        Create();
+        // create the first tool instance on the fly
+        GameObject fakeToolInstance = CreateToolInstance();
+
+        if (!tool.isPermanent)
+        {
+            // if the tool is not permanent remove the rigidbody from the store tool instance
+            Rigidbody rb = fakeToolInstance.gameObject.GetComponent<Rigidbody>();
+            Destroy(rb);
+        }
+
+        // attach the game object to the store transform in order to make it appear like the tool
+        fakeToolInstance.transform.SetParent(transform);
     }
 
-    public void Create()
+    public GameObject CreateToolInstance()
     {
-        GameObject instance = GameObject.Instantiate(tool.gameObject, transform.position, transform.rotation);
+        return GameObject.Instantiate(tool.gameObject, transform.position, transform.rotation);
     }
 }
