@@ -77,7 +77,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toolType: 3
-  isPermanent: 0
+  isPermanent: 1
 --- !u!1001 &2384891440894042391
 PrefabInstance:
   m_ObjectHideFlags: 0

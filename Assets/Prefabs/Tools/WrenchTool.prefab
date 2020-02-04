@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toolType: 6
-  isPermanent: 0
+  isPermanent: 1
 --- !u!65 &425563574183783205
 BoxCollider:
   m_ObjectHideFlags: 0

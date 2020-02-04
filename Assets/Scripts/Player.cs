@@ -65,6 +65,10 @@ public class Player : MonoBehaviour
                     GameObject toolInstance = store.CreateToolInstance();
                     hand = toolInstance.gameObject.GetComponent<Tool>();
                 }
+                else
+                {
+                    hand = tool;
+                }
             }
 
 
