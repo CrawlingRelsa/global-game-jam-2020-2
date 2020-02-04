@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2019223998030979344}
-  - component: {fileID: 2019223998030979343}
-  - component: {fileID: 2019223998030979342}
   m_Layer: 0
   m_Name: wheel_3_damaged
   m_TagString: Untagged
@@ -34,40 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2019223998030979343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2019223998030979345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae0d471a97dc3304fbd3217fc1c9395b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  car: {fileID: 0}
-  points: 0
-  issues:
-  - minimumRepairTime: 10
-    maximumRepairTime: 15
-    compatibleTool: 1
-  - minimumRepairTime: 10
-    maximumRepairTime: 15
-    compatibleTool: 2
---- !u!65 &2019223998030979342
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2019223998030979345}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.62, y: 1.4, z: 1.39}
-  m_Center: {x: -0.16, y: 0, z: 0}
 --- !u!1 &2019223998866005042
 GameObject:
   m_ObjectHideFlags: 0

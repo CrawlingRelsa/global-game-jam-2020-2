@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
     [Header("CAMERA")]
     public Animator camAnimator;
+    public Animator creditsAnimator;
 
     [Header("UI")]
     public GameObject panelPause;
@@ -19,6 +21,9 @@ public class UIController : MonoBehaviour
 
     public Text carsLabel;
     public Text moneyLabel;
+
+    public Image batteryLevelImage;
+    public Sprite[] batterySprites;
 
 
     void Start()
@@ -41,6 +46,7 @@ public class UIController : MonoBehaviour
     public void Pause()
     {
         pauseButton.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(pauseButton);
         playButton.SetActive(false);
         restartButton.SetActive(false);
 
@@ -73,8 +79,32 @@ public class UIController : MonoBehaviour
         panelPause.SetActive(true);
 
         restartButton.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(restartButton);
         playButton.SetActive(false);
         pauseButton.SetActive(false);
+    }
+
+    public void Exit()
+    {
+        creditsAnimator.SetBool("credits", true);
+    }
+
+    public void QuitApplication()
+    {
+        Debug.Log("Application Quit");
+        Application.Quit();
+    }
+
+    /// <summary>
+    /// Aggiorna lo stato della batteria indicando quanto manca al prossimo spawn.
+    /// </summary>
+    /// <param name="value">Il valore indica il tempo che manca al prossimo spawn. Il valore è normalizzato 0-1.</param>
+    public void UpdateNormalizedSpawnTime(float value)
+    {
+        //Trovo la sprite più adatta
+        int sprite = (int)(value / (1f / (float)batterySprites.Length));
+        // Debug.Log(sprite);
+        batteryLevelImage.sprite = batterySprites[sprite];
     }
 
     public void UpdatePoints(int cars, int points)
