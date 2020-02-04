@@ -6,7 +6,9 @@ public class Tool : MonoBehaviour
 {
     public enum ToolType { Spray, Screwdriver, Wheel, Hammer, Glass, FireExtinguisher, Brench, LightBulb, Condom }
     public ToolType toolType;
+    public Store toolCreator;
     public bool isPermanent = true;
+    private bool isQuitting = false;
 
     public bool IsCompatible(Part part) { return this.toolType == part.CurrentAction.compatibleTool; }
 
@@ -18,4 +20,19 @@ public class Tool : MonoBehaviour
             Destroy(transform.gameObject);
         }
     }
+
+    void OnApplicationQuit()
+    {
+        isQuitting = true;
+    }
+    void OnDestroy()
+    {
+        if (!isQuitting && toolCreator)
+        {
+            // Respawn this object
+            toolCreator.CreateToolInstance();
+            
+        }
+    }
+
 }

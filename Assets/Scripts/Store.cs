@@ -24,6 +24,13 @@ public class Store : MonoBehaviour
 
     public GameObject CreateToolInstance()
     {
-        return GameObject.Instantiate(tool.gameObject, transform.position, transform.rotation);
+        
+        GameObject toolInstance = GameObject.Instantiate(tool.gameObject, transform.position, transform.rotation);
+        if (tool.isPermanent)
+        {
+            // assign the newly created tool to itself, to be respawned when destroyed
+            toolInstance.GetComponent<Tool>().toolCreator = this;
+        }
+        return toolInstance;
     }
 }
