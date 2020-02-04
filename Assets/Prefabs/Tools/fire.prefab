@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toolType: 5
-  isPermanent: 0
+  isPermanent: 1
 --- !u!54 &172016894
 Rigidbody:
   m_ObjectHideFlags: 0

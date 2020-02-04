@@ -13,5 +13,9 @@ public class Tool : MonoBehaviour
     public void DoAction(Part part)
     {
         part.Repair();
+        if (!isPermanent)
+        {
+            Destroy(transform.gameObject);
+        }
     }
 }
