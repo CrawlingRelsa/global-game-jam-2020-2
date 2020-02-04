@@ -176,13 +176,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae0d471a97dc3304fbd3217fc1c9395b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  car: {fileID: 0}
   points: 20
   issues:
-  - minimumRepairTime: 10
-    maximumRepairTime: 15
+  - minimumRepairTime: 5
+    maximumRepairTime: 10
     compatibleTool: 1
-  - minimumRepairTime: 10
-    maximumRepairTime: 15
+  - minimumRepairTime: 5
+    maximumRepairTime: 10
     compatibleTool: 2
 --- !u!1001 &5327843621358643697
 PrefabInstance:

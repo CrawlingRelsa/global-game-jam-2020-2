@@ -109,6 +109,6 @@ MonoBehaviour:
   car: {fileID: 0}
   points: 0
   issues:
-  - minimumRepairTime: 10
-    maximumRepairTime: 15
+  - minimumRepairTime: 5
+    maximumRepairTime: 10
     compatibleTool: 7

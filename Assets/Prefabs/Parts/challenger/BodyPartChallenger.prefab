@@ -142,8 +142,8 @@ MonoBehaviour:
   car: {fileID: 0}
   points: 0
   issues:
-  - minimumRepairTime: 10
-    maximumRepairTime: 15
+  - minimumRepairTime: 5
+    maximumRepairTime: 10
     compatibleTool: 0
 --- !u!82 &6489114044881816490
 AudioSource:

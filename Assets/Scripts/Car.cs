@@ -30,31 +30,25 @@ public class Car : MonoBehaviour
     public void LoadParts()
     {
         parts = GetComponentsInChildren<Part>().ToList();
-        for (int i = 0; i < parts.Count; i++)
+        foreach (Part part in parts)
         {
-            parts[i].SetCar(this);
+            part.car = this;
         }
     }
 
     public float GetRepairTime()
     {
-        float x = parts.Aggregate(0f, (repairTime, part) => repairTime + part.GetRepairTime());
-        Debug.Log(x);
-        return x;
+        return parts.Aggregate(0f, (repairTime, part) => repairTime + part.GetRepairTime());
     }
 
-    public void Fix(Part part)
+    public void FixPart(Part part)
     {
-        GameManager.Instance.points += part.points;
         parts.Remove(part);
         if (parts.Count == 0)
         {
-            GameManager.Instance.cars.Remove(this);
-            GameManager.Instance.points += points;
-            GameManager.Instance.repairedCars += 1;
+            GameManager.Instance.AddPoints(points);
+            GameManager.Instance.FixCar(this);
         }
-
-        GameManager.Instance.uiController.UpdatePoints(GameManager.Instance.repairedCars, GameManager.Instance.points);
     }
 
     void Update()

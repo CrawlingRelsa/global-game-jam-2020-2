@@ -5,14 +5,13 @@ using System.Linq;
 
 public class Part : MonoBehaviour
 {
-    private Car car;
+    public Car car;
     public int points;
     public List<Issue> issues = new List<Issue>();
 
     public float GetRepairTime()
     {
-        return issues.Aggregate(0f, (repairTime, issue) => repairTime + Mathf.Max(issue.minimumRepairTime, issue.maximumRepairTime - GameManager.Instance.repairedCars * GameManager.Instance.difficultyIncreasePerRepairCar));
-
+        return issues.Aggregate(0f, (repairTime, issue) => repairTime + Mathf.Max(issue.minimumRepairTime, issue.maximumRepairTime - GameManager.Instance.repairedCars * GameManager.Instance.difficultyIncreasePerRepairedCar));
     }
 
     public Issue CurrentAction
@@ -25,13 +24,10 @@ public class Part : MonoBehaviour
         }
     }
 
-    public void SetCar(Car car)
-    {
-        this.car = car;
-    }
-
     public void Repair()
     {
+        GameManager.Instance.AddPoints(points);
+
         if (issues.Count > 0)
         {
             issues[0].SolveIssue(transform);
@@ -39,9 +35,9 @@ public class Part : MonoBehaviour
 
             if (issues.Count == 0)
             {
-                car.Fix(this);
+                car.FixPart(this);
             }
         }
-
     }
+
 }

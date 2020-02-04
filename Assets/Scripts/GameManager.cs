@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     [Header("Cars")]
     public int points = 0;
     public int repairedCars = 0;
-    public float difficultyIncreasePerRepairCar = 0.5f;
+    public float difficultyIncreasePerRepairedCar = 0.5f;
     public List<Car> cars;
 
     [Header("Car params")]
@@ -28,7 +28,10 @@ public class GameManager : MonoBehaviour
     public Transform startPoint;
     public Transform destinationPoint;
     public float carRepairTime = 0f;
+    public float remainingTime = 60f;
+    public float timeIncreasePerRepairedCar = 20;
     public float elapsedTime = 0f;
+    public bool mustForceCarSpawn = false;
     public float elapsedTimeSinceLastCarSpawn = 0f;
     public float startPositionOffset = 20f;
     #endregion
@@ -61,21 +64,41 @@ public class GameManager : MonoBehaviour
 
         elapsedTime += Time.deltaTime;
 
-        if (elapsedTime > 0 && elapsedTimeSinceLastCarSpawn > 0)
-            uiController.UpdateNormalizedSpawnTime(1 - (elapsedTime - elapsedTimeSinceLastCarSpawn) / carRepairTime);
+        remainingTime -= Time.deltaTime;
+        if (remainingTime <= 0)
+        {
+            GameOver();
+            return;
+        }
 
-        if (elapsedTime >= elapsedTimeSinceLastCarSpawn + carRepairTime)
+        if (mustForceCarSpawn)
         {
             SpawnCar();
-
             elapsedTimeSinceLastCarSpawn = elapsedTime;
 
-            if (cars.Count > carSlots)
+            mustForceCarSpawn = false;
+        }
+        else
+        {
+
+            if (elapsedTime > 0 && elapsedTimeSinceLastCarSpawn > 0)
             {
-                GameOver();
-                return;
+                uiController.UpdateNormalizedSpawnTime(1 - (elapsedTime - elapsedTimeSinceLastCarSpawn) / carRepairTime);
+            }
+
+            if (elapsedTime >= elapsedTimeSinceLastCarSpawn + carRepairTime)
+            {
+                SpawnCar();
+                elapsedTimeSinceLastCarSpawn = elapsedTime;
+
+                if (cars.Count > carSlots)
+                {
+                    GameOver();
+                    return;
+                }
             }
         }
+
     }
 
     private void LateUpdate()
@@ -94,6 +117,21 @@ public class GameManager : MonoBehaviour
     }
 
     #endregion
+
+    public void AddPoints(int points)
+    {
+        this.points += points;
+    }
+
+    public void FixCar(Car car)
+    {
+        repairedCars += 1;
+        uiController.UpdatePoints(repairedCars, points);
+
+        remainingTime += timeIncreasePerRepairedCar;
+
+        mustForceCarSpawn = true;
+    }
 
     #region PUBLIC INTERFACE
     public void Play()
