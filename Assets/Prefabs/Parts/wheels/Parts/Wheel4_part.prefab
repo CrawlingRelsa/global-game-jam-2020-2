@@ -358,11 +358,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: wheel_4_damaged
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5804317731600450368, guid: 5d0f3bb992d3740fb9434316b2cef100, type: 3}
-    - {fileID: 863723648211757479, guid: 5d0f3bb992d3740fb9434316b2cef100, type: 3}
-    - {fileID: 223050951726999119, guid: 5d0f3bb992d3740fb9434316b2cef100, type: 3}
-    - {fileID: 5804317731600450375, guid: 5d0f3bb992d3740fb9434316b2cef100, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d0f3bb992d3740fb9434316b2cef100, type: 3}
 --- !u!4 &563788795503406289 stripped
 Transform:
