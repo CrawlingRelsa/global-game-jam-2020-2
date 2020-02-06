@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Wheel
+  m_Name: Wrench
   m_Shader: {fileID: 4800000, guid: 5e646371061c3564aaf1ee3630a2ab60, type: 3}
   m_ShaderKeywords: ENABLE_OUTLINE
   m_LightmapFlags: 4

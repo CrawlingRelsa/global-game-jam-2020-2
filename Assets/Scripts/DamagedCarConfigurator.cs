@@ -42,7 +42,7 @@ public class DamagedCarConfigurator : MonoBehaviour
         GameObject carInstance = GameObject.Instantiate(randomCar.carRoot, Vector3.zero, randomCar.carRoot.transform.localRotation);
         int randomWheelIndex = Random.Range(0, 6);
 
-        int issuesNumber = GameManager.Instance.repairedCars / 3 + 1;
+        int issuesNumber = GameManager.Instance.repairedCars / GameManager.Instance.increaseIssuesNumberEveryRepairedCars + 1;
         int selectedIssues = 0;
         Shuffle(randomCar.partsConfigurations);
         for (int i = 0; i < randomCar.partsConfigurations.Length; i++)

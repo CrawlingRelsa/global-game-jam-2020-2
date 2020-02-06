@@ -1377,7 +1377,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 438746676}
   m_LocalRotation: {x: -0, y: 0.6087605, z: -0, w: 0.79335415}
-  m_LocalPosition: {x: 19.25, y: 3.32, z: 7.784}
+  m_LocalPosition: {x: 19.25, y: 3.32, z: 7.88}
   m_LocalScale: {x: 800.0001, y: 800, z: 800.0001}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3234,14 +3234,19 @@ MonoBehaviour:
   damagedCarConfigurator: {fileID: 1782608355}
   points: 0
   repairedCars: 0
-  difficultyIncreasePerRepairCar: 0.5
+  increaseIssuesNumberEveryRepairedCars: 3
+  difficultyIncreasePerRepairedCar: 0.5
   cars: []
   carSlots: 3
   carBoxLength: 12
   startPoint: {fileID: 805979758}
   destinationPoint: {fileID: 1764482968}
   carRepairTime: 0
+  maximumRemainingTime: 60
+  remainingTime: 60
+  timeIncreasePerRepairedCar: 10
   elapsedTime: 0
+  mustForceCarSpawn: 0
   elapsedTimeSinceLastCarSpawn: 0
   startPositionOffset: 20
 --- !u!4 &820952464
@@ -7447,7 +7452,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2029866835}
   m_LocalRotation: {x: -0.68301284, y: 0.18301237, z: 0.1830124, w: 0.6830128}
-  m_LocalPosition: {x: 19.324286, y: 3.66, z: -8.048893}
+  m_LocalPosition: {x: 19.324286, y: 3.228, z: -8.048893}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
