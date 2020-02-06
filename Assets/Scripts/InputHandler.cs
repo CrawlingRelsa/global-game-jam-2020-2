@@ -5,7 +5,6 @@ using UnityEngine;
 public class InputHandler : MonoBehaviour
 {
     public Vector2 resolution;
-    public Vector2 padTest;
     public bool isTouch;
     private static Vector2 axisPad;
     private static bool actionTapped;
@@ -58,6 +57,7 @@ public class InputHandler : MonoBehaviour
 
     void HandleLeftPad(Touch left)
     {
+
         if (left.phase == TouchPhase.Began)
         {
             startingPoint = left.position;
@@ -72,13 +72,12 @@ public class InputHandler : MonoBehaviour
             currentPoint = Vector2.zero;
         }
         axisPad = (currentPoint - startingPoint).normalized;
-        axisPad.x = Mathf.Round(axisPad.x);
-        axisPad.y = Mathf.Round(axisPad.y);
-        padTest = axisPad;
+        Debug.Log(axisPad);
     }
 
     void HandleTap(Touch right)
     {
+        Debug.Log(right.phase);
         if (right.phase == TouchPhase.Began)
         {
             actionTapped = true;
