@@ -27,11 +27,10 @@ public class Tool : MonoBehaviour
     }
     void OnDestroy()
     {
-        if (!isQuitting && toolCreator)
+        if (GameManager.Instance.remainingTime >= 0 && !isQuitting && toolCreator)
         {
             // Respawn this object
             toolCreator.CreateToolInstance();
-            
         }
     }
 
