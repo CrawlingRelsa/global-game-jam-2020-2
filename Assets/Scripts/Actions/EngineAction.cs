@@ -43,6 +43,7 @@ public class EngineAction : PartAction
     {
         engineSource.clip = wrenchClip;
         engineSource.Play();
+        StartCoroutine(FadeOut(engineSource, 1f));
         Destroy(child);
     }
 
@@ -50,6 +51,7 @@ public class EngineAction : PartAction
     {
         engineSource.clip = extinguishClip;
         engineSource.Play();
+        StartCoroutine(FadeOut(engineSource, 1f));
         Destroy(child);
         child = Instantiate(smokeParticles, oldPosition.position, oldPosition.rotation, transform);
     }

@@ -56,7 +56,6 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        // FIXME
         player.canMove = isGameRunning;
 
         if (!isGameRunning)
@@ -124,6 +123,8 @@ public class GameManager : MonoBehaviour
 
     public void FixCar(Car car)
     {
+        cars.Remove(car);
+
         repairedCars += 1;
         uiController.UpdatePoints(repairedCars, points);
 

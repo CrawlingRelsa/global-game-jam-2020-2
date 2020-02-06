@@ -167,8 +167,10 @@ public class Player : MonoBehaviour
     {
         if (canMove)
         {
-            Vector3 dir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-            dir = forwardVector * Input.GetAxisRaw("Vertical") + rightVector * Input.GetAxisRaw("Horizontal");
+            //Vector3 dir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+            Vector2 axis = InputHandler.GetAxis();
+            Vector3 dir = new Vector3(axis.x, 0, axis.y);
+            dir = forwardVector * axis.y + rightVector * axis.x;
             //look at forward
             transform.LookAt(transform.position + dir);
             if (dir.magnitude == 0)
@@ -187,7 +189,7 @@ public class Player : MonoBehaviour
     private void LateUpdate()
     {
         //se premo il tasto azione
-        if (Input.GetButtonDown("Fire1"))
+        if (InputHandler.GetActionTap())
         {
             //non ho niente in mano e ho davanti un tool
             if (!hand && forwardTool)
